@@ -1,7 +1,7 @@
 <template>
     <div class="hello">
-        <h1>{{ msg }}</h1>
-        <h3>This is fab hotel using Micronaut.</h3>
+        <h5>{{ msg }}</h5>
+        <h6>This is fab hotel using Micronaut.</h6>
     </div>
 </template>
 

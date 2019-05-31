@@ -1,7 +1,5 @@
 <template>
-  <div id="custom">
-
-    <app-header></app-header>
+  <div id="custom1">
 
     <!-- The refresh and hotel errors are being returned by CountryForm which is the add tab of search form -->
     <search-form v-model="search"
@@ -37,7 +35,7 @@
 
 <script>
   import $ from 'jquery';
-  import AppHeader from '../AppHeader'
+
   import SearchForm from './SearchForm'
   import HotelService from '@/services/HotelService'
   import HotelTable from './table/HotelTable'
@@ -69,7 +67,7 @@
   export default {
     components: {
       SearchForm,
-      AppHeader,
+
       HotelTable,
       Pagination,
       moment

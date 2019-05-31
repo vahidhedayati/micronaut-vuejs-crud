@@ -1,4 +1,4 @@
-<template id="fulltable-template" xmlns="http://www.w3.org/1999/xhtml">
+<template>
   <div>
   <table class="table">
     <thead class="thead-inverse">

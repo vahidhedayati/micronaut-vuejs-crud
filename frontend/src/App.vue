@@ -1,103 +1,66 @@
 <template>
-    <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link>
-          | <router-link to="/welcome">Welcome</router-link>
-            |
-            <router-link to="/hotel">Hotels</router-link>
-            |
-            <router-link to="/create">Create new Hotel</router-link>
-        </div>
+  <div id="app">
 
-        <hr/>
+    <nav  id="nav" class="site-header navbar navbar-expand-lg navbar-static-top" role="navigation">
+      <a class="navbar-brand" href="/#"><img src="./assets/github.svg" alt="Grails Logo"/></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+              aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div id="main-container">
-            <router-view/>
-        </div>
+      <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
+        <ul class="nav">
+          <li  class="dropdown"><router-link class="site-header" to="/">Home</router-link></li>
+          <li  class="dropdown"><router-link to="/hotel">Hotels</router-link></li>
 
-        <footer>
-            <img src="./assets/hotel.png" alt="Logo Footer"/>
-            <p><a href="https://fabhotel.com">Fab Hotel Chain &copy; 2019</a></p>
-        </footer>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="true">Status <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>Option 1</li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="true">Dropdown 1<span class="caret"></span></a>
+            <ul class="dropdown-menu" >
+              <li>Option 1</li>
+            </ul>
+
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="true">Dropdown 2 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>Option 1</li>
+
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+
+    </nav>
+
+
+    <div id="main-container" role="main">
+      <section class="colset-2-its">
+
+          <router-view/>
+
+      </section>
     </div>
+    <div class="footer row" role="contentinfo">
+      <img src="./assets/hotel.png" alt="Logo Footer"/>
+      <p><a href="http://locaLhost:3000">Fab Hotel Finder &copy; 2019</a></p>
+    </div>
+  </div>
 </template>
 
+
 <style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-    }
 
-    #nav {
-        padding: 10px 10px 0 10px;
-    }
-
-    #nav a {
-        font-weight: bold;
-        color: #2c3e50;
-    }
-
-    #nav a.router-link-exact-active {
-        color: #42b983;
-    }
-
-    #main-container {
-        width: 80%;
-        margin: 0 auto;
-    }
-
-    footer {
-        text-align: center;
-        border-top: 1px gray solid;
-        margin-left: 10em;
-        margin-right: 10em;
-        margin-top: 30px;
-    }
-
-    footer > img {
-        margin-top: 20px;
-        height: 60px;
-    }
-
-    footer > hr {
-        width: 90%;
-    }
-
-    footer > p > a {
-        color: black;
-    }
-
-    #livechat-compact-container {
-        height: 153px;
-        position: fixed;
-        right: 0;
-        top: 30vh;
-        z-index: 10000;
-    }
-    .btn-chat a {
-        color: #fff;
-        text-decoration: none;
-        background: #1798F7;
-        padding: 24px 20px 8px;
-        display: block;
-        font-weight: bold;
-        font-size: 14px;
-        box-shadow: 0 0 0 1px #03b2ff inset;
-        border: 1px solid #144866;
-        border-radius: 2px;
-        -ms-transform: rotate(90deg) translate(0, -20px);
-        -webkit-transform: rotate(90deg) translate(0, -20px);
-        transform: rotate(90deg) translate(0, -20px);
-        position: relative;
-        right: -27px;
-        transition: background 0.2s, right 0.2s;
-    }
-    .btn-chat a:hover {
-        background: #47B6F5;
-        right: -20px;
-        transition: background 0.2s, right 0.2s;
-    }
 </style>

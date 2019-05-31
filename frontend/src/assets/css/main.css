@@ -3,6 +3,12 @@ body,
 input, select, textarea {
   font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
+.site-header {
+  background-color: #d7f3f1;
+  font-color: #313163;
+  font-size: 18px;
+
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
@@ -592,3 +598,43 @@ img.grails-logo {
   height:340px;
   margin-top:-10px;
 }
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 10px 10px 0 10px;
+}
+
+
+
+#main-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px gray solid;
+  margin-left: 10em;
+  margin-right: 10em;
+  margin-top: 30px;
+}
+
+footer > img {
+  margin-top: 20px;
+  height: 60px;
+}
+
+footer > hr {
+  width: 90%;
+}
+
+footer > p > a {
+  color: black;
+}
+

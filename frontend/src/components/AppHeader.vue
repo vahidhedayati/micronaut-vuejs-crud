@@ -1,10 +1,7 @@
 <template id="app-header-template">
-  <div class="container">
-    <div class="jumbotron">
+  <div class=" reduceHeading">
       <img :src = "require(`@/assets/${headerImage}.png`)" width="180px" height="100px"/>
       <h1>{{headerText}}</h1>
-      <Home/>
-    </div>
   </div>
 </template>
 
@@ -14,7 +11,7 @@
     name: 'app-header',
     props: {
       headerImage: {
-        default: 'hotel'
+        default: 'micronaut'
 
       },
       headerText: {
@@ -29,4 +26,10 @@
 </script>
 
 <style>
+  .reduceHeading {
+    zoom:70.50%;
+    float:right;
+    position:static;
+    margin-top:-75px;
+  }
 </style>

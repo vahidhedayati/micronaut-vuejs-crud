@@ -23,15 +23,20 @@
 
         </hotel-form>
       </tab>
+
+      <app-header headerText="Hotel listing" headerImage="hotel"></app-header>
+
     </tabs>
   </div>
 </template>
 <script>
   import {Tabs, Tab} from 'vue-tabs-component';
   import HotelForm from './HotelForm'
+  import AppHeader from '../AppHeader'
   export default {
     components: {
       Tabs,
+      AppHeader,
       HotelForm,
     },
     props: ['search'],

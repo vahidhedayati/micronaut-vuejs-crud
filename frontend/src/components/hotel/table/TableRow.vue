@@ -21,15 +21,17 @@
       <td> hotel.updateUser.username </td>
       <td>  {{ hotel.lastUpdated | shortMoment() }}
       </td>
-      <td class="dropdown">
+      <td class="dropdown dropdown-table">
         <span v-if="showForm">
             <button v-on:click="save(updatedHotel)">Save</button>
         </span>
         <span v-else>
           <button v-on:click="editHotel(hotel)">Edit</button>
+          <span class="hoverButton">
       <vue-dropdown :config="config"
                     @setSelectedOption="actionDropDown($event,hotel.id)"
       ></vue-dropdown>
+            </span>
         </span>
       </td>
     </tr>
@@ -207,26 +209,25 @@ export default {
 
 <!-- Per Component Custom CSS Rules -->
 <style>
-  .dropdown-label.text {
+.dropdown-label.text {
     font-size:0.8em;
   }
-  .dropdown-label-container {
+.dropdown-label-container {
     margin-top: -30px !important;
   }
-  .dropdown-label-container .angle-down {
+.dropdown-label-container .angle-down {
     margin-top: -10px !important;
     margin-left: -10px !important;
     background-color: orange !important;
   }
-  .dropdown {
-    margin-right: 50px;
-    float:right !important;
+.hoverButton {
+    margin-left:-70px;
     display: inline-block !important;
     width:30px !important;
     font-size:0.8em;
 
   }
-  .dropdown .options {
+.dropdown-table .options {
     width:80px !important;
     font-size:0.8em;
     background: red;
