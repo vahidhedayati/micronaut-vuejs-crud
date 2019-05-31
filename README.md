@@ -4,11 +4,12 @@ Micronaut backend vuejs frontend application
 
 Sample to get h2 database working taken from [this guide](https://guides.micronaut.io/micronaut-data-access-jpa-hibernate/guide/index.html)
 
+Demo of this project on  [youtube: micronaut vuejs crud](https://www.youtube.com/watch?v=Lhg8p9zI8xA) 
+----
 
 
 Running app
 ----
-
 
 ##### Run Consul
 
