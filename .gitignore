@@ -1,0 +1,15 @@
+.asciidoctor/
+.gradle/
+build/
+.classpath
+.project
+.settings/
+bin/
+.idea/
+*.iml
+node_modules/
+frontend/node_modules/
+**/node_modules/
+out/
+.vscode/
+/.apt_generated/

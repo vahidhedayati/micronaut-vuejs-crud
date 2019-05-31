@@ -1,0 +1,28 @@
+micronaut:
+  application:
+    name: backend
+    max: 10
+  server:
+    port: ${random.port}
+consul:
+  client:
+    registration:
+      enabled: true
+    defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
+---
+datasources:
+    default:
+        url: ${JDBC_URL:`jdbc:h2:mem:default;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`}
+        username: ${JDBC_USER:sa}
+        password: ${JDBC_PASSWORD:""}
+        driverClassName: ${JDBC_DRIVER:org.h2.Driver}
+---
+jpa:
+    default:
+        packages-to-scan:
+            - 'backend.domain' 
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: update
+                show_sql: true
