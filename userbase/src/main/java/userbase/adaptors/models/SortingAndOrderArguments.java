@@ -1,4 +1,4 @@
-package backend.implementation;
+package userbase.adaptors.models;
 
 
 import javax.annotation.Nullable;
@@ -21,7 +21,7 @@ public class SortingAndOrderArguments {
     private Integer max;
 
     @Nullable
-    @Pattern(regexp = "id|name|code|lastUpdated")
+    @Pattern(regexp = "id|userame|firstname|surname|lastUpdated")
     private String sort;
 
     @Pattern(regexp = "asc|ASC|desc|DESC")

@@ -88,13 +88,13 @@ public class HotelDb implements Hotels {
         args.getOffset().ifPresent(query::setFirstResult);
         //countQuery.setMaxResults(1);
         HotelModel model = new HotelModel();
-        System.out.println(" "+(countQuery.getFirstResult())+"1 sss ssss");
+        //System.out.println(" "+(countQuery.getFirstResult())+"1 sss ssss");
         model.setInstanceList(query.getResultList());
-        System.out.println(" "+(countQuery.getSingleResult())+"0 sss ssss");
+        //System.out.println(" "+(countQuery.getSingleResult())+"0 sss ssss");
         model.setInstanceTotal(countQuery.getSingleResult());
 
         model.setNumberOfPages(model.getInstanceTotal()/args.getMax().get());
-        System.out.println(" "+model.getInstanceTotal()+" "+model.getNumberOfPages()+" "+model.getInstanceList());
+        //System.out.println(" "+model.getInstanceTotal()+" "+model.getNumberOfPages()+" "+model.getInstanceList());
         return Optional.of(model); //Single.just(model);
     }
 

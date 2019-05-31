@@ -26,6 +26,7 @@ dependencies {
     implementation "io.micronaut.configuration:micronaut-hibernate-jpa"
     implementation "io.micronaut.configuration:micronaut-jdbc-hikari"
     implementation "io.micronaut.configuration:micronaut-hibernate-validator"
+    implementation "io.micronaut:micronaut-security-jwt"
     runtimeOnly "com.h2database:h2"
     runtimeOnly "io.micronaut:micronaut-discovery-client"
     testImplementation  "io.micronaut:micronaut-inject-java"

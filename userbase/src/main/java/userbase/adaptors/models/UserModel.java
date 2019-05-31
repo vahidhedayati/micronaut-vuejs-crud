@@ -1,20 +1,28 @@
-package backend.adaptors.models;
+package userbase.adaptors.models;
 
-import backend.domain.Hotel;
 import com.sun.istack.Nullable;
+import userbase.domain.User;
 
 import java.util.List;
 
-public class HotelModel {
+public class UserModel {
 
-   @Nullable
-    private List<Hotel> instanceList;
+    @Nullable
+    private List<User> instanceList;
+
     @Nullable
     private Long instanceTotal;
 
     @Nullable
     private Long numberOfPages;
 
+    public List<User> getInstanceList() {
+        return instanceList;
+    }
+
+    public void setInstanceList(List<User> instanceList) {
+        this.instanceList = instanceList;
+    }
 
     public Long getInstanceTotal() {
         return instanceTotal;
@@ -32,12 +40,5 @@ public class HotelModel {
         this.numberOfPages = numberOfPages;
     }
 
-    public List<Hotel> getInstanceList() {
-        return instanceList;
-    }
-
-    public void setInstanceList(List<Hotel> instanceList) {
-        this.instanceList = instanceList;
-    }
 
 }

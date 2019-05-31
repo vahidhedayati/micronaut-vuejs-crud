@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.Optional;
 
 public class SortingAndOrderArguments {
     @Nullable
@@ -18,8 +17,9 @@ public class SortingAndOrderArguments {
     @Positive
     private Integer max;
 
+    ////@Pattern(regexp = "id|name")
+    //generic class used by Users which has own regex and backend has own regex
     @Nullable
-    @Pattern(regexp = "id|name")
     private String sort;
 
     @Pattern(regexp = "asc|ASC|desc|DESC")
@@ -29,16 +29,6 @@ public class SortingAndOrderArguments {
     public SortingAndOrderArguments() {
 
     }
-    /*
-    @JsonCreator
-    public SortingAndOrderArguments(@JsonProperty("offset") Integer offset, @JsonProperty("max") Integer max, @JsonProperty("sort") String sort, @JsonProperty("order") String order) {
-        System.out.println("JSON BLOCK");
-        this.offset=offset;
-        this.max = max;
-        this.sort = sort;
-        this.order = order;
-    }
-    */
 
 
     public Integer getOffset() {
@@ -99,19 +89,5 @@ public class SortingAndOrderArguments {
         }
         this.order = order;
     }
-    /*
-    public Map<String,String> getValues() {
-        Map<String, String> m = new HashMap<String, String>()
-        {
-            {
-                put("offset", offset.toString());
-                put("max", max.toString());
-                put("order",order);
-                put("sort", sort);
 
-            }
-        };
-        return m;
-    }
-    */
 }

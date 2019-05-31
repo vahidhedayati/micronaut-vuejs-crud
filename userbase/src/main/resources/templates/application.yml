@@ -1,7 +1,6 @@
 micronaut:
   application:
     name: userbase
-    max: 10
   server:
     port: ${random.port}
   security:
@@ -35,7 +34,7 @@ datasources:
 jpa:
   default:
     packages-to-scan:
-    - 'userbase.domain'
+    - 'backend.domain'
     properties:
       hibernate:
         hbm2ddl:

@@ -33,7 +33,7 @@ dependencies {
     testImplementation  "org.junit.jupiter:junit-jupiter-api"
     testImplementation  "io.micronaut.test:micronaut-test-junit5"
     testImplementation  "org.junit.jupiter:junit-jupiter-engine"
-
+    
 }
 
 
@@ -42,7 +42,7 @@ dependencies {
 dependencies {
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
-
+    
      implementation "io.micronaut:micronaut-inject"
                 implementation "io.micronaut:micronaut-validation"
                 implementation "io.micronaut:micronaut-runtime"
@@ -50,7 +50,7 @@ dependencies {
                 implementation "io.micronaut:micronaut-http-server-netty"
                 runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
             compileOnly  "io.micronaut:micronaut-inject-java"
-
+    
 }
 */
 tasks.withType(JavaCompile){
@@ -61,7 +61,5 @@ shadowJar {
     mergeServiceFiles()
 }
 mainClassName = "userbase.Application"
-
 run.classpath += configurations.developmentOnly
 run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
-

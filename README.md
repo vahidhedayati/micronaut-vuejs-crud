@@ -22,14 +22,14 @@ or if you have installed docker simply run `sudo docker run -p 8500:8500 consul`
 ##### To start all applications in one session run:
 
 ```
-./gradlew frontend:start backend:run gateway:run --parallel
+./gradlew frontend:start backend:run gateway:run userbase:run --parallel
 
 
 # Advanced: 
 # When running on linux a process for node hangs on which also keeps jvms active - killing node kills all other jvms hanging off
 # this is all in 1 line to kill if found and start apps
 
-kill -9 $(netstat -pln 2>/dev/null |grep LISTEN|grep node|awk '{print $7}'|awk -F"/" '{print $1}'); ./gradlew frontend:start backend:run gateway:run --parallel
+kill -9 $(netstat -pln 2>/dev/null |grep LISTEN|grep node|awk '{print $7}'|awk -F"/" '{print $1}'); ./gradlew frontend:start backend:run gateway:run userbase:run --parallel
 
 
 

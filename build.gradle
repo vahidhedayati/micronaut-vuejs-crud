@@ -87,9 +87,10 @@ subprojects { project ->
           } else {
               apply plugin: "java"
               if (project.name == 'userbase') {
-                  compile "io.micronaut:micronaut-security-jwt"
+
               }
               if (project.name != 'something' && !project.path.contains(':someFunction') && !project.path.contains(':frontend')) {
+
                   annotationProcessor "io.micronaut:micronaut-inject-java"
                   annotationProcessor "io.micronaut:micronaut-validation"
                   compile "io.micronaut:micronaut-inject"
@@ -103,6 +104,7 @@ subprojects { project ->
                   compile "io.micronaut.configuration:micronaut-jdbc-hikari"
                   compile "io.micronaut.configuration:micronaut-hibernate-validator"
                   runtime "com.h2database:h2"
+                  compile "io.micronaut:micronaut-security-jwt"
                   runtime "io.micronaut:micronaut-discovery-client"
                   testAnnotationProcessor "io.micronaut:micronaut-inject-java"
               }
