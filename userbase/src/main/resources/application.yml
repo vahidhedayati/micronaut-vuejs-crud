@@ -1,0 +1,17 @@
+micronaut:
+  application:
+    name: userbase
+  security:
+    enabled: true
+    endpoints:
+      login:
+        enabled: true
+      oauth:
+        enabled: true
+    token:
+      jwt:
+        enabled: true
+        signatures:
+          secret:
+            generator:
+              secret: open_sesame_abraca_dabra

@@ -85,34 +85,34 @@ subprojects { project ->
     
     
           } else {
- apply plugin: "java"
-            if (project.name != 'something' && !project.path.contains(':someFunction') && !project.path.contains(':frontend')) {
-            
-                annotationProcessor "io.micronaut:micronaut-inject-java"
-                annotationProcessor "io.micronaut:micronaut-validation"
-                compile "io.micronaut:micronaut-inject"
-                compile "io.micronaut:micronaut-validation"
-                compile "io.micronaut:micronaut-runtime"
-                compile "io.micronaut:micronaut-http-client"
-                compile "io.micronaut:micronaut-http-server-netty"
-                compile 'org.projectlombok:lombok:1.18.2'
-                runtime "ch.qos.logback:logback-classic:1.2.3"
-                compile "io.micronaut.configuration:micronaut-hibernate-jpa"
-                compile "io.micronaut.configuration:micronaut-jdbc-hikari"
-                compile "io.micronaut.configuration:micronaut-hibernate-validator"
-                runtime "com.h2database:h2"
-                runtime "io.micronaut:micronaut-discovery-client"
-                testAnnotationProcessor "io.micronaut:micronaut-inject-java"
-    
-    
-            }
+              apply plugin: "java"
+              if (project.name == 'userbase') {
+                  compile "io.micronaut:micronaut-security-jwt"
+              }
+              if (project.name != 'something' && !project.path.contains(':someFunction') && !project.path.contains(':frontend')) {
+                  annotationProcessor "io.micronaut:micronaut-inject-java"
+                  annotationProcessor "io.micronaut:micronaut-validation"
+                  compile "io.micronaut:micronaut-inject"
+                  compile "io.micronaut:micronaut-validation"
+                  compile "io.micronaut:micronaut-runtime"
+                  compile "io.micronaut:micronaut-http-client"
+                  compile "io.micronaut:micronaut-http-server-netty"
+                  compile 'org.projectlombok:lombok:1.18.2'
+                  runtime "ch.qos.logback:logback-classic:1.2.3"
+                  compile "io.micronaut.configuration:micronaut-hibernate-jpa"
+                  compile "io.micronaut.configuration:micronaut-jdbc-hikari"
+                  compile "io.micronaut.configuration:micronaut-hibernate-validator"
+                  runtime "com.h2database:h2"
+                  runtime "io.micronaut:micronaut-discovery-client"
+                  testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+              }
           }
         }
 
 
 
 
-        
+
     }
 }
 
