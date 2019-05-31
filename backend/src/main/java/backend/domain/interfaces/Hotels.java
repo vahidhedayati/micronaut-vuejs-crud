@@ -1,5 +1,6 @@
 package backend.domain.interfaces;
 
+import backend.adaptors.models.HotelModel;
 import backend.domain.Hotel;
 import backend.implementation.SortingAndOrderArguments;
 import io.reactivex.Maybe;
@@ -17,7 +18,7 @@ public interface Hotels {
 	void deleteById(@NotNull Long id);
 	int update(@NotNull Long id, @NotBlank String name, String code);
 
-	List<Hotel> findAll(@NotNull SortingAndOrderArguments args);
+	Optional<HotelModel> findAll(@NotNull SortingAndOrderArguments args);
 
 
 	Optional<Hotel> findByCode(String code);

@@ -1,6 +1,7 @@
 package gateway.adaptors.clients;
 
 import gateway.adaptors.models.Hotel;
+import gateway.adaptors.models.HotelModel;
 import gateway.adaptors.models.implementation.HotelSaveCommand;
 import gateway.adaptors.models.implementation.HotelUpdateCommand;
 import gateway.adaptors.models.implementation.SortingAndOrderArguments;
@@ -9,14 +10,9 @@ import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.retry.annotation.Fallback;
-import io.reactivex.annotations.Nullable;
-import org.hibernate.mapping.Map;
+import io.reactivex.Single;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Client(id = "backend", path = "/")
@@ -54,7 +50,7 @@ public class BackendFallBack  implements BackendClient {
 
 
     @Get(uri="/list{?args*}" , consumes = MediaType.APPLICATION_JSON)
-    public List<Hotel> findAll(SortingAndOrderArguments args) {
+    public Optional<HotelModel> findAll(SortingAndOrderArguments args) {
         System.out.println("Backend app is down using fallback  findAll");
         return null;
     }

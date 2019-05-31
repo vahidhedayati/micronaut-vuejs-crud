@@ -23,6 +23,16 @@ or if you have installed docker simply run `sudo docker run -p 8500:8500 consul`
 
 ```
 ./gradlew frontend:start backend:run gateway:run --parallel
+
+
+# Advanced: 
+# When running on linux a process for node hangs on which also keeps jvms active - killing node kills all other jvms hanging off
+# this is all in 1 line to kill if found and start apps
+
+kill -9 $(netstat -pln 2>/dev/null |grep LISTEN|grep node|awk '{print $7}'|awk -F"/" '{print $1}'); ./gradlew frontend:start backend:run gateway:run --parallel
+
+
+
 ```
 
 The above will launch 1 instance of frontend vuejs site running on `localhost:3000` 

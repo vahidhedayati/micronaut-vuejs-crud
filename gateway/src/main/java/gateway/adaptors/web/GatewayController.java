@@ -2,16 +2,17 @@ package gateway.adaptors.web;
 
 import gateway.adaptors.clients.BackendClient;
 import gateway.adaptors.models.Hotel;
+import gateway.adaptors.models.HotelModel;
 import gateway.adaptors.models.implementation.HotelSaveCommand;
 import gateway.adaptors.models.implementation.HotelUpdateCommand;
 import gateway.adaptors.models.implementation.SortingAndOrderArguments;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
+import io.reactivex.Single;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class GatewayController {
     }
 
     @Get(uri="/list{?args*}" , consumes = MediaType.APPLICATION_JSON)
-    public List<Hotel> findAll(SortingAndOrderArguments args) {
+    public Optional<HotelModel> findAll(SortingAndOrderArguments args) {
         //System.out.println("Trying to find"+args.getValues());
         return backendClient.findAll(args);
     }

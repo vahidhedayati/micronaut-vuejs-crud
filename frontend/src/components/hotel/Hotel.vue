@@ -106,6 +106,7 @@
         return HotelService.fetchRoot('/list?'+params)
           .then((res) => {
           if (res) {
+            console.log('full results '+JSON.stringify(res));
             if (res.data.instanceList) {
               console.log("rr "+res.data.instanceList)
               this.hotels = res.data.instanceList;

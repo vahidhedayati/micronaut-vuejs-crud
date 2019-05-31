@@ -1,5 +1,6 @@
 package backend.adaptors.web;
 
+import backend.adaptors.models.HotelModel;
 import backend.domain.Hotel;
 import backend.domain.interfaces.Hotels;
 import backend.implementation.HotelSaveCommand;
@@ -9,11 +10,13 @@ import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import io.micronaut.validation.Validated;
+import io.reactivex.Single;
 import io.reactivex.annotations.Nullable;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Validated
 @Controller("/")
@@ -68,7 +71,7 @@ public class HotelController {
     */
 
     @Get("/list{?args*}") //, consumes = MediaType.APPLICATION_JSON
-    public List<Hotel> findAll(@Nullable SortingAndOrderArguments args) {
+    public Optional<HotelModel> findAll(@Nullable SortingAndOrderArguments args) {
         return hotels.findAll(args);
     }
 
