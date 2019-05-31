@@ -132,7 +132,7 @@ Gateway basics added as part of last push for things to work consul now is requi
 
 Here is a very basic sample of site loading up micronaut backend app via gateway app through to vuejs frontend app.
 
-![basics working](https://raw.githubusercontent.com/vahidhedayati/hotel-info/master/docs/working-with-pagination-vuejs.png)
+![basics working](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/working-with-pagination-vuejs.png)
 
-![save search demo](https://raw.githubusercontent.com/vahidhedayati/hotel-info/master/docs/save-search-demo.png)
+![save search demo](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/save-search-demo.png)
 

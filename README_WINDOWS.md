@@ -9,10 +9,10 @@ Please refer to different pushes  with some lines of instructions added here
 
 Once downloaded, unzip and place into a folder
 
-![add mn_home](https://raw.githubusercontent.com/vahidhedayati/hotel-info/master/docs/modify_path_add_mn_home_bin.png)
+![add mn_home](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/modify_path_add_mn_home_bin.png)
 
 
-![export path mn_home/bin](https://raw.githubusercontent.com/vahidhedayati/hotel-info/master/docs/export_MN_HOME.png)
+![export path mn_home/bin](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/export_MN_HOME.png)
 
 
 
