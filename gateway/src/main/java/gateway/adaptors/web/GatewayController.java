@@ -1,6 +1,7 @@
 package gateway.adaptors.web;
 
 import gateway.adaptors.clients.BackendClient;
+import gateway.adaptors.clients.UserClient;
 import gateway.adaptors.models.Hotel;
 import gateway.adaptors.models.HotelModel;
 import gateway.adaptors.models.implementation.HotelSaveCommand;
@@ -20,10 +21,8 @@ import java.util.Optional;
 public class GatewayController {
 
     private final BackendClient backendClient;
-
     public GatewayController(BackendClient backendClient) {
-        this.backendClient= backendClient;
-
+        this.backendClient = backendClient;
     }
 
     @Get(uri="/list{?args*}" , consumes = MediaType.APPLICATION_JSON)
@@ -51,5 +50,7 @@ public class GatewayController {
     public Hotel save(@Body HotelSaveCommand args) {
         return backendClient.save(args);
     }
+
+
 
 }

@@ -1,6 +1,5 @@
 package gateway.adaptors.models;
 
-import javax.persistence.*;
 import java.util.Date;
 
 
@@ -24,26 +23,11 @@ public class User {
         this.lastUpdated=new Date();
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "username")
     private String username;
-
-    @Column(name = "password")
     private String password;
-
-
-    @Column(name = "firstname")
     private String firstname;
-
-
-    @Column(name = "surname")
     private String surname;
-
-
-    @Column(name = "lastUpdated")
     private Date lastUpdated;
 
 

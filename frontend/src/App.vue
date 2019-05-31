@@ -12,7 +12,7 @@
         <ul class="nav">
           <li  class="dropdown"><router-link class="site-header" to="/">Home</router-link></li>
           <li  class="dropdown"><router-link to="/hotel">Hotels</router-link></li>
-
+          <li  class="dropdown"><router-link to="/users">Users</router-link></li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
           <li class="dropdown">

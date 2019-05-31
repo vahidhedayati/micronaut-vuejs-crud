@@ -89,7 +89,7 @@ public class UsersImpl implements Users {
         model.setInstanceTotal(countQuery.getSingleResult());
 
         model.setNumberOfPages(model.getInstanceTotal()/args.getMax().get());
-        //System.out.println(" "+model.getInstanceTotal()+" "+model.getNumberOfPages()+" "+model.getInstanceList());
+        System.out.println(" "+model.getInstanceTotal()+" "+model.getNumberOfPages()+" "+model.getInstanceList());
         return Optional.of(model); //Single.just(model);
     }
 

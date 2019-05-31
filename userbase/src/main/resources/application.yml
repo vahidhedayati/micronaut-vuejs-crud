@@ -5,7 +5,7 @@ micronaut:
   server:
     port: ${random.port}
   security:
-    enabled: true
+    enabled: false
     endpoints:
       login:
         enabled: true
