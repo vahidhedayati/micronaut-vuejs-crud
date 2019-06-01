@@ -4,14 +4,14 @@
           <div class="col-sm-3">
             <div class="input-group">
             Hotel name:
-              <input type="text" class="form-control" placeholder="Enter a name..." v-model="hotel.name" required>
+              <custom-input-required  pattern="(?=.*[A-Za-z0-9]).{3,55}" v-model="hotel.name" title="Hotel name: 3 - 55 characters only "></custom-input-required>
             </div>
           </div>
 
           <div class="col-sm-2">
             <div class="input-group">
             Hotel Code:
-              <input type="text" class="form-control" placeholder="Enter code" v-model="hotel.code">
+              <custom-input-required  pattern="(?=.*[A-Z]).{2,3}" v-model="hotel.name" title="Hotel code: Upper Case A-Z 2 to 3 characters only "></custom-input-required>
             </div>
           </div>
 
@@ -37,9 +37,10 @@ export default {
  //  props: ['countries', 'reload','fetchCountries','sortSearch'],
   data: function () {
     return {
-      hotel:{name:'',code:'',updateUser:{id:''}},
+      hotel:{name:'',code:'',updateUser:{id:''}}
     }
   },
+
   created: function () {
     //this.authRecord=JSON.parse(localStorage.getItem('vuex')).auth.isAuthenticated;
     //this.hotel.updateUser.id=this.authRecord.id;

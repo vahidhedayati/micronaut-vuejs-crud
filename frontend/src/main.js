@@ -23,6 +23,7 @@ import VueDropdown from 'vue-dynamic-dropdown'
 // include the default style
 //import 'vuejs-dialog/vuejs-dialog.min.css'
 
+
 // Tell Vue to install the plugin.
 //Vue.use(VuejsDialog)
 
@@ -37,7 +38,6 @@ Vue.use(VueAxios, axios);
 Vue.use(BootstrapVue);
 Vue.use(Vuetify);
 Vue.component('vue-dropdown', VueDropdown);
-
 
 Vue.component('tabs', Tabs);
 Vue.component('tab', Tab);
@@ -83,7 +83,31 @@ Vue.mixin({
     }
   }
 });
+/**
+ * Below element provide a custom input which does pattern matching
+ * <custom-input-required  pattern="(?=.*[A-Z]).{2,3}" v-model="hotel.name" title="Hotel code: Upper Case A-Z 2 to 3 characters only "></custom-input-required>
+ *
+ * <custom-input-required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" v-model="hotel.name"
+ * title="Must contain at least one number and one uppercase and lowercase letter, and be between 8 and 16 characters."></custom-input-required>
+ */
+Vue.component('custom-input-required',{
+  props: ['pattern', 'title', 'v-model'],
+  template:`<input type="text"  required :pattern="pattern" :title="title" :v-model="v-model"/>`
+  }
+);
+/**
+ * Below element provide a custom input - which does pattern matching
+ * <custom-input pattern="(?=.*[A-Z]).{2,3}" v-model="hotel.name" title="Hotel code: Upper Case A-Z 2 to 3 characters only "></custom-input-required>
+ *
+ * <custom-input name="test" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" v-model="hotel.name"
+ * title="Must contain at least one number and one uppercase and lowercase letter, and be between 8 and 16 characters."></custom-input-required>
+ */
 
+Vue.component('custom-input',{
+    props: ['pattern', 'title', 'v-model'],
+    template:`<input type="text" :pattern="pattern" :title="title" :v-model="v-model"/>`
+  }
+)
 // Global event bus
 Vue.prototype.$eventHub = new Vue();
 //using   this.$root.$emit('rental-counter',this.counter); rather than
