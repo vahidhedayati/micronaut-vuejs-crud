@@ -94,7 +94,7 @@ subprojects { project ->
                   annotationProcessor "io.micronaut:micronaut-inject-java"
                   annotationProcessor "io.micronaut:micronaut-validation"
                   compile "io.micronaut:micronaut-inject"
-                  compile "io.micronaut:micronaut-validation"
+
                   compile "io.micronaut:micronaut-runtime"
                   compile "io.micronaut:micronaut-http-client"
                   compile "io.micronaut:micronaut-http-server-netty"
@@ -102,7 +102,12 @@ subprojects { project ->
                   runtime "ch.qos.logback:logback-classic:1.2.3"
                   compile "io.micronaut.configuration:micronaut-hibernate-jpa"
                   compile "io.micronaut.configuration:micronaut-jdbc-hikari"
+
+                  //For backend validation these 2 dependencies are required:
+                  compile "io.micronaut:micronaut-validation"
                   compile "io.micronaut.configuration:micronaut-hibernate-validator"
+
+
                   runtime "com.h2database:h2"
                   compile "io.micronaut:micronaut-security-jwt"
                   runtime "io.micronaut:micronaut-discovery-client"

@@ -1,35 +1,30 @@
 package gateway.adaptors.models;
 
 
+import io.micronaut.validation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//@Entity
-//@Table(name = "hotel")
-//@NoArgsConstructor
-//@Getter
+
 public class Hotel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "code")
+
     private String code;
 
-    @Column(name = "name")
+
     private String name;
 
-    @Column(name = "lastUpdated")
-    private Date lastUpdated;
-    //@ElementCollection
-    //@CollectionTable(name = "hotel_rooms", joinColumns = @JoinColumn(name = "hotel_id"))
-    //private List<HotelRooms> rooms;
 
-    @Column(name = "hotelRooms")
-    //@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Date lastUpdated;
+
     private List<HotelRooms> hotelRooms;
 
     public Hotel() {

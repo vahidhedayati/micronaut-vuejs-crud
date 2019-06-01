@@ -1,21 +1,24 @@
 <template id="add-hotel-template" xmlns="http://www.w3.org/1999/xhtml">
   <div>
+    <ul v-show="errors.length>0"  class="errors"><li v-for="error in errors">{{ error }}</li></ul>
      <div id="inputRow" class="row">
           <div class="col-sm-3">
             <div class="input-group">
             Hotel name:
-              <custom-input-required  pattern="(?=.*[A-Za-z0-9]).{3,55}" v-model="hotel.name" title="Hotel name: 3 - 55 characters only "></custom-input-required>
+
+              <input type="text" class="form-control" pattern="(?=.*[A-Za-z0-9]).{3,55}" placeholder="Enter a name..." title="Hotel name: 3 - 55 characters only " v-model="hotel.name" required>
             </div>
           </div>
 
           <div class="col-sm-2">
             <div class="input-group">
             Hotel Code:
-              <custom-input-required  pattern="(?=.*[A-Z]).{2,3}" v-model="hotel.name" title="Hotel code: Upper Case A-Z 2 to 3 characters only "></custom-input-required>
+
+
+              <input type="text" class="form-control" pattern="(?=.*[A-Z]).{2,4}" placeholder="Enter a code..." title="Hotel code: Upper Case A-Z 2 to 4 characters only" v-model="hotel.code" required>
+
             </div>
           </div>
-
-
         <!-- if the user is logged in this is value is preset by their ID after the page has been loaded -->
         <input type="hidden"  v-model="hotel.updateUser.id">
 
@@ -37,6 +40,7 @@ export default {
  //  props: ['countries', 'reload','fetchCountries','sortSearch'],
   data: function () {
     return {
+      errors: [],
       hotel:{name:'',code:'',updateUser:{id:''}}
     }
   },
@@ -59,15 +63,16 @@ export default {
                 }
               }
             }).catch((error) => {
+              console.log(' aahh '+JSON.stringify(error))
               if (error.response) {
-                     this.$emit('hotel-errors', error.response.data.error);
+              this.$emit('hotel-errors', error.response.data);
 
-              } else if ( error.request) {
-                console.log("dddd"+error.request);
-              } else {
-                console.log('Error', error.message);
-              }
-            });
+            } else if ( error.request) {
+              console.log("dddd"+error.request);
+            } else {
+              console.log('Error', error.message);
+            }
+          });
     }
   }
  }

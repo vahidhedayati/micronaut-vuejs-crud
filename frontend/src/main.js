@@ -91,8 +91,8 @@ Vue.mixin({
  * title="Must contain at least one number and one uppercase and lowercase letter, and be between 8 and 16 characters."></custom-input-required>
  */
 Vue.component('custom-input-required',{
-  props: ['pattern', 'title', 'v-model'],
-  template:`<input type="text"  required :pattern="pattern" :title="title" :v-model="v-model"/>`
+  props: ['pattern', 'title', 'vModel'],
+  template:`<input type="text"  required :pattern="pattern" :title="title" :v-model="vModel"/>`
   }
 );
 /**
@@ -104,8 +104,8 @@ Vue.component('custom-input-required',{
  */
 
 Vue.component('custom-input',{
-    props: ['pattern', 'title', 'v-model'],
-    template:`<input type="text" :pattern="pattern" :title="title" :v-model="v-model"/>`
+    props: ['pattern', 'title', 'vModel'],
+    template:`<input type="text" :pattern="pattern" :title="title" :v-model="vModel"/>`
   }
 )
 // Global event bus
