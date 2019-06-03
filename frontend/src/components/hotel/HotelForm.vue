@@ -1,5 +1,5 @@
 <template id="add-hotel-template" xmlns="http://www.w3.org/1999/xhtml">
-  <div>
+  <div id="validated-form">
     <ul v-show="errors.length>0"  class="errors"><li v-for="error in errors">{{ error }}</li></ul>
      <div id="inputRow" class="row">
           <div class="col-sm-3">
@@ -14,11 +14,22 @@
             <div class="input-group">
             Hotel Code:
 
-
+              <custom-input pattern="(?=.*[A-Z]).{2,4}" model="hotel.name" title="Hotel code: Upper Case A-Z 2 to 4 characters only "></custom-input>
               <input type="text" class="form-control" pattern="(?=.*[A-Z]).{2,4}" placeholder="Enter a code..." title="Hotel code: Upper Case A-Z 2 to 4 characters only" v-model="hotel.code" required>
 
             </div>
           </div>
+
+       <div>
+         <label>Phone:</label>
+         <input type="text" v-model="hotel.phone" />
+       </div>
+       <div>
+         <label>Email:</label>
+         <input type="text" v-model="hotel.email" />
+       </div>
+
+
         <!-- if the user is logged in this is value is preset by their ID after the page has been loaded -->
         <input type="hidden"  v-model="hotel.updateUser.id">
 
@@ -27,7 +38,7 @@
       &nbsp
       </div>
         <div class="btn-group" role="group" aria-label="Add new vehicle">
-          <button type="button" class="btn btn-success" @click="submit()">Add hotel</button>
+          <button type="button" class="btn btn-success" @click.prevent="submitForm()">Add hotel</button>
         </div>
       </div>
   </div>
@@ -36,21 +47,68 @@
 
 <script>
 import HotelService from '@/services/HotelService'
+const validateEmail= email => {
+  if (!email.length) {
+    return { valid: false, error: "This field is required" };
+  }
+  if (!email.match(/^\w+([.-]?\w+)_@\w+(_[_.-]?\w+)_(.\w{2,3})+$/)) {
+    return { valid: false, error: "Please, enter a valid email." };
+  }
+  return { valid: true, error: null };
+};
+
+const validatePhone = phone => {
+  if (!phone.length) {
+    return { valid: false, error: 'This field is required.' };
+  }
+
+  if (!phone.match(/^[+][(]?[0-9]{1,3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,7}$/gm)) {
+    return { valid: false, error: 'Please, enter a valid international phone number.' };
+  }
+
+  return { valid: true, error: null };
+}
 export default {
  //  props: ['countries', 'reload','fetchCountries','sortSearch'],
   data: function () {
     return {
+      valid: true,
       errors: [],
-      hotel:{name:'',code:'',updateUser:{id:''}}
+      hotel:{name:'',code:'',phone:'', email:'', updateUser:{id:''}}
     }
   },
+  components: {
+    'validateEmail': validateEmail,
+    'validatePhone': validatePhone
 
+  },
   created: function () {
     //this.authRecord=JSON.parse(localStorage.getItem('vuex')).auth.isAuthenticated;
     //this.hotel.updateUser.id=this.authRecord.id;
   },
    methods: {
+     submitForm () {
+
+       const validPhone = validatePhone(this.hotel.phone);
+       this.errors.push(validPhone.error);
+       if (this.valid) {
+         this.valid = validPhone.valid
+       }
+
+       const validEmail = validateEmail(this.hotel.email);
+       this.errors.push(validEmail.error);
+       if (this.valid) {
+         this.valid = validEmail.valid
+       } else {
+         this.$emit('hotel-errors',this.errors);
+       }
+
+       if (this.valid) {
+        this.submit();
+       }
+     },
     submit () {
+
       //This will call parent page with this action and pass this newly created object to it
       //this.$emit('add-hotel',hotel)
 
@@ -73,6 +131,8 @@ export default {
               console.log('Error', error.message);
             }
           });
+
+
     }
   }
  }
