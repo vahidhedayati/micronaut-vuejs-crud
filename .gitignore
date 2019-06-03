@@ -1,6 +1,5 @@
 .asciidoctor/
 .gradle/
-build/
 .classpath
 .project
 .settings/
