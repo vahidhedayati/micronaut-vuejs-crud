@@ -6,6 +6,8 @@ import VueAxios from 'vue-axios'
 import createPersistedState from 'vuex-persistedstate'
 import vehicles from './modules/vehicles';
 
+import en from '../locales/en';
+import de from '../locales/de'
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
@@ -23,17 +25,11 @@ Vue.use(vuexI18n.plugin, store, {
   }
 })
 
-const translationsIt = {
-  content: 'This is some {type} content'
-}
 
-const translationsEn = {
-  content: 'This is some {type} content'
-}
 
-Vue.i18n.add('en', translationsEn)
-Vue.i18n.add('it', translationsIt)
+Vue.i18n.add('en', de)
+Vue.i18n.add('de', en)
 
-Vue.i18n.set('it')
+Vue.i18n.set('en')
 
 export default store
