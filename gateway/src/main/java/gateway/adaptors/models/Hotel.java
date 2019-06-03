@@ -26,6 +26,11 @@ public class Hotel {
 
     private String email;
 
+
+    private Long updateUserId;
+    private User updateUser;
+
+
     private Date lastUpdated;
 
     private List<HotelRooms> hotelRooms;
@@ -75,6 +80,22 @@ public class Hotel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getUpdateUserId() {
+        return updateUserId;
+    }
+
+    public void setUpdateUserId(Long updateUserId) {
+        this.updateUserId = updateUserId;
+    }
+
+    public User getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(User updateUser) {
+        this.updateUser = updateUser;
     }
 
     public HotelRoomList rooms() {

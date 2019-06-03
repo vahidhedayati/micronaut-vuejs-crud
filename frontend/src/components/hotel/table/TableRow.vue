@@ -34,7 +34,12 @@
             {{ hotel.email }}
           </span v-else>
       </td>
-      <td> hotel.updateUser.username </td>
+      <td> username {{hotel.updateUser.username}}
+        ID: {{hotel.updateUser.id}}
+        firstName: {{hotel.updateUser.firstname}}
+        firstName: {{hotel.updateUser.surname}}
+
+      </td>
       <td>  {{ hotel.lastUpdated | shortMoment() }}
       </td>
       <td class="dropdown dropdown-table">

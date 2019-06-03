@@ -89,7 +89,7 @@ public class HotelDb implements Hotels {
         //countQuery.setMaxResults(1);
         HotelModel model = new HotelModel();
         //System.out.println(" "+(countQuery.getFirstResult())+"1 sss ssss");
-        model.setInstanceList(query.getResultList());
+        model.setInstanceList(Optional.of(query.getResultList()));//.flatMap(hotel -> {}));
         //System.out.println(" "+(countQuery.getSingleResult())+"0 sss ssss");
         model.setInstanceTotal(countQuery.getSingleResult());
 

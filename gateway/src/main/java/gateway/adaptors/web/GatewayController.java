@@ -28,14 +28,35 @@ public class GatewayController {
    // @Inject
    // Validator validator;
     private final BackendClient backendClient;
-    public GatewayController(BackendClient backendClient) {
+    private final UserClient userClient;
+    public GatewayController(BackendClient backendClient,UserClient userClient) {
+        this.userClient=userClient;
         this.backendClient = backendClient;
     }
 
     @Get(uri="/list{?args*}" , consumes = MediaType.APPLICATION_JSON)
     public Optional<HotelModel> findAll(SortingAndOrderArguments args) {
         //System.out.println("Trying to find"+args.getValues());
-        return backendClient.findAll(args);
+        Optional<HotelModel> hotelModel =  backendClient.findAll(args);
+        /**
+         * We bind in userClient and have a slightly different modelled hotel on gateway application which has a User updateUser
+         * defined - this binds in via flatMap to bind in actual user for given user -
+         */
+        hotelModel.flatMap(hotelModel1 -> {
+            hotelModel1.getInstanceList().flatMap(hotel-> {
+                hotel.forEach(hotel1 -> {
+                    hotel1.setUpdateUser(userClient.findById(hotel1.getUpdateUserId()).get());
+                });
+                /*
+                for (Hotel hotel1 : hotel) {
+                    hotel1.setUpdateUser(userClient.findById(hotel1.getUpdateUserId()).get());
+                };
+                 */
+                return Optional.of(hotel);
+            });
+            return Optional.of(hotelModel1);
+        });
+        return hotelModel;
     }
 
     @Get("/{id}")

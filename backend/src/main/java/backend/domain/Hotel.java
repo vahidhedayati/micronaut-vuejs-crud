@@ -30,7 +30,11 @@ public class Hotel {
 
     @Column(name = "email")
     private String email;
-    
+
+
+    @Column(name = "update_user_id")
+    private Long updateUserId;
+
     //@ElementCollection
     //@CollectionTable(name = "hotel_rooms", joinColumns = @JoinColumn(name = "hotel_id"))
     //private List<HotelRooms> rooms;
@@ -52,6 +56,7 @@ public class Hotel {
         this.code = code;
         this.name=name;
         this.hotelRooms = new ArrayList<>();
+        this.updateUserId = 1L;
         this.lastUpdated=new Date();
     }
 
@@ -59,6 +64,7 @@ public class Hotel {
         this.code = code;
         this.name=name;
         this.hotelRooms = new ArrayList<>();
+        this.updateUserId = 1L;
         this.lastUpdated=date;
     }
 
@@ -68,6 +74,7 @@ public class Hotel {
         this.phone = phone;
         this.email = email;
         this.hotelRooms = new ArrayList<>();
+        this.updateUserId = 1L;
         this.lastUpdated=new Date();
     }
 
@@ -77,8 +84,30 @@ public class Hotel {
         this.phone = phone;
         this.email = email;
         this.hotelRooms = new ArrayList<>();
+        this.updateUserId = 1L;
         this.lastUpdated = lastUpdated;
     }
+
+    public Hotel(String code, String name, String phone, String email, Long updateUserId) {
+        this.code = code;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.updateUserId = updateUserId;
+        this.hotelRooms = new ArrayList<>();
+        this.lastUpdated = new Date();
+    }
+
+    public Hotel(String code, String name, String phone, String email, Long updateUserId, Date lastUpdated) {
+        this.code = code;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.hotelRooms = new ArrayList<>();
+        this.updateUserId = updateUserId;
+        this.lastUpdated = lastUpdated;
+    }
+
 
     public Date getLastUpdated() {
         return this.lastUpdated;
@@ -122,11 +151,20 @@ public class Hotel {
         this.email = email;
     }
 
+    public Long getUpdateUserId() {
+        return updateUserId;
+    }
+
+    public void setUpdateUserId(Long updateUserId) {
+        this.updateUserId = updateUserId;
+    }
+
     @Override
     public String toString() {
         return "hotel{" +
                 "id=" + id +
                 ", code='" + code + '\'' +
+                ", update_user_id='" + updateUserId + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", rooms='" + getHotelRooms() + '\'' +

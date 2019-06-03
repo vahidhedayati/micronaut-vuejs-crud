@@ -13,7 +13,7 @@ public class DemoUsersFactory {
 	
 	static List<User> defaultUsers() {
 		List<User> users = new ArrayList<User>();
-		users.add(addUser("admin","password", "admin", "admin"));
+		users.add(addUser("admin","password", "Alan", "Wollenstein"));
 		users.add(addUser("susan","password", "Susan", "Jones"));
 		users.add(addUser("bill","password", "Billy", "Smith"));
 		users.add(addUser("ben","password", "Benjamin", "Thomas"));

@@ -2,12 +2,15 @@ package gateway.adaptors.models;
 
 import com.sun.istack.Nullable;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 public class HotelModel {
 
    @Nullable
-    private List<Hotel> instanceList;
+    private Optional<List<Hotel>> instanceList;
+
     @Nullable
     private Long instanceTotal;
 
@@ -32,11 +35,11 @@ public class HotelModel {
 
 
 
-    public List<Hotel> getInstanceList() {
+    public Optional<List<Hotel>> getInstanceList() {
         return instanceList;
     }
 
-    public void setInstanceList(List<Hotel> instanceList) {
+    public void setInstanceList(Optional<List<Hotel>> instanceList) {
         this.instanceList = instanceList;
     }
 
