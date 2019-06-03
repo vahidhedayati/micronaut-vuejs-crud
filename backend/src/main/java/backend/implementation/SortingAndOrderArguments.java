@@ -21,7 +21,7 @@ public class SortingAndOrderArguments {
     private Integer max;
 
     @Nullable
-    @Pattern(regexp = "id|name|code|lastUpdated")
+    @Pattern(regexp = "id|name|code|lastUpdated|phone|email")
     private String sort;
 
     @Pattern(regexp = "asc|ASC|desc|DESC")

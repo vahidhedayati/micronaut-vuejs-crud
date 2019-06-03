@@ -1,6 +1,6 @@
 <template id="add-hotel-template" xmlns="http://www.w3.org/1999/xhtml">
   <div id="validated-form">
-    <ul v-show="errors.length>0"  class="errors"><li v-for="error in errors">{{ error }}</li></ul>
+
      <div id="inputRow" class="row">
           <div class="col-sm-3">
             <div class="input-group">
@@ -50,7 +50,7 @@ const validateEmail= email => {
   if (!email.length) {
     return { valid: false, error: "Email field is required" };
   }
-  if (!email.match(/^\w+([.-]?\w+)_@\w+(_[_.-]?\w+)_(.\w{2,3})+$/)) {
+  if (!email.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)) {
     return { valid: false, error: "Please, enter a valid email." };
   }
   return { valid: true, error: null };
@@ -93,32 +93,30 @@ export default {
   },
    methods: {
      submitForm () {
-
+       this.errors=[];
        const validName = validateName(this.hotel.name);
        this.errors.push(validName.error);
-       if (this.valid) {
-         this.valid = validName.valid
-       }
+       this.valid = validName.valid
+
 
        const validPhone = validatePhone(this.hotel.phone);
        this.errors.push(validPhone.error);
-       if (this.valid) {
-         this.valid = validPhone.valid
-       }
+       this.valid = validPhone.valid
 
        const validEmail = validateEmail(this.hotel.email);
        this.errors.push(validEmail.error);
-       if (this.valid) {
-         this.valid = validEmail.valid
-       }
+       this.valid = validEmail.valid
+
 
 
        /**
         * IF form is valid for submission submit it - otherwise fail front end validation:
         */
        if (this.valid) {
+         console.log('submitting valid form')
         this.submit();
-       } else {
+       } else if (this.errors.length>0) {
+         console.log('ERRors on page" '+this.errors)
          this.$emit('hotel-errors',this.errors);
        }
      },

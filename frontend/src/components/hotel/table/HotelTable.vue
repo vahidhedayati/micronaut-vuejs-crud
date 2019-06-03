@@ -28,12 +28,29 @@
            desc: (this.column ==='code' && this.currentSortDir==='desc')}">
           </span>
         </th>
-        <th @click="sort('username')" :class="{active: this.column === 'username'}">
-          Username
-          <span :class="{blank:(this.column != 'username'),
-          arrow: (this.column === 'username'),
-          asc: (this.column === 'username' && this.currentSortDir==='asc'),
-           desc: (this.column ==='username' && this.currentSortDir==='desc')}">
+        <th @click="sort('phone')" :class="{active: this.column === 'phone'}">
+          phone
+          <span :class="{blank:(this.column != 'phone'),
+          arrow: (this.column === 'phone'),
+          asc: (this.column === 'phone' && this.currentSortDir==='asc'),
+           desc: (this.column ==='phone' && this.currentSortDir==='desc')}">
+          </span>
+        </th>
+
+        <th @click="sort('email')" :class="{active: this.column === 'email'}">
+          Email
+          <span :class="{blank:(this.column != 'email'),
+          arrow: (this.column === 'email'),
+          asc: (this.column === 'email' && this.currentSortDir==='asc'),
+           desc: (this.column ==='email' && this.currentSortDir==='desc')}">
+          </span>
+        </th>
+        <th @click="sort('updateUser')" :class="{active: this.column === 'updateUser'}">
+          updateUser
+          <span :class="{blank:(this.column != 'updateUser'),
+          arrow: (this.column === 'updateUser'),
+          asc: (this.column === 'updateUser' && this.currentSortDir==='asc'),
+           desc: (this.column ==='updateUser' && this.currentSortDir==='desc')}">
           </span>
         </th>
         <th @click="sort('lastUpdated')"  :class="{active: this.column === 'lastUpdated'}">

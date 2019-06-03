@@ -57,7 +57,7 @@ public class HotelDb implements Hotels {
         findById(id).ifPresent(hotel -> entityManager.remove(hotel));
     }
 
-    private final static List<String> VALID_PROPERTY_NAMES = Arrays.asList("id", "name", "code", "lastUpdated");
+    private final static List<String> VALID_PROPERTY_NAMES = Arrays.asList("id", "name", "code", "lastUpdated", "phone","email");
 
     @Transactional(readOnly = true)
     public Optional<HotelModel> findAll(@NotNull SortingAndOrderArguments args) {
@@ -100,11 +100,13 @@ public class HotelDb implements Hotels {
 
     @Override
     @Transactional
-    public int update(@NotNull Long id, @NotBlank String name, @NotBlank String code) {
-        return entityManager.createQuery("UPDATE Hotel h  SET name = :name, code = :code where id = :id")
+    public int update(@NotNull Long id, @NotBlank String name, @NotBlank String code,@NotBlank  String phone,@NotBlank String email) {
+        return entityManager.createQuery("UPDATE Hotel h  SET name = :name, code = :code, email = :email, phone = :phone  where id = :id")
                 .setParameter("name", name)
                 .setParameter("id", id)
                 .setParameter("code", code)
+                .setParameter("phone", phone)
+                .setParameter("email", email)
                 .executeUpdate();
     }
 

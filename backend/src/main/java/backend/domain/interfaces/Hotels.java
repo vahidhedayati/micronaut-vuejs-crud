@@ -16,7 +16,7 @@ public interface Hotels {
 
 	Optional<Hotel> findById(@NotNull Long id);
 	void deleteById(@NotNull Long id);
-	int update(@NotNull Long id, @NotBlank String name, String code);
+	int update(@NotNull Long id, @NotBlank String name, String code,@NotBlank  String phone,@NotBlank String email);
 
 	Optional<HotelModel> findAll(@NotNull SortingAndOrderArguments args);
 

@@ -15,10 +15,25 @@
         {{hotel.code}}
       </div>
 
-      <div class="form-label col-sm-12">
+
+        <div class="form-label col-sm-12">
+          Phone
+          {{hotel.phone}}
+        </div>
+
+
+        <div class="form-label col-sm-12">
+          Email
+          {{hotel.email}}
+        </div>
+
+
+        <div class="form-label col-sm-12">
         username
         hotel.updateUser.username
       </div>
+
+
       <div class="form-label col-sm-12">
         last updated
         {{ hotel.lastUpdated | shortMoment() }}

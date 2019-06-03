@@ -25,6 +25,11 @@ public class Hotel {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
     
     //@ElementCollection
     //@CollectionTable(name = "hotel_rooms", joinColumns = @JoinColumn(name = "hotel_id"))
@@ -57,6 +62,24 @@ public class Hotel {
         this.lastUpdated=date;
     }
 
+    public Hotel(String code, String name, String phone, String email) {
+        this.code = code;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.hotelRooms = new ArrayList<>();
+        this.lastUpdated=new Date();
+    }
+
+    public Hotel(String code, String name, String phone, String email, Date lastUpdated) {
+        this.code = code;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.hotelRooms = new ArrayList<>();
+        this.lastUpdated = lastUpdated;
+    }
+
     public Date getLastUpdated() {
         return this.lastUpdated;
     }
@@ -81,11 +104,31 @@ public class Hotel {
     public HotelRoomList rooms() {
         return new HotelRoomList(hotelRooms);
     }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "hotel{" +
                 "id=" + id +
                 ", code='" + code + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 ", rooms='" + getHotelRooms() + '\'' +
                 ", name='" + name + '\'' +
                 '}';

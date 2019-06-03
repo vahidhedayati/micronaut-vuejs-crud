@@ -3,21 +3,37 @@
     <tr>
       <td>{{ hotel.id }}</td>
       <td>
-          <span v-if="showForm">
-              <input  v-model="updatedHotel.name">
-          </span>
-          <span v-else>
-              {{ hotel.name }}
+        <span v-if="showForm">
+            <input  v-model="updatedHotel.name">
+        </span>
+        <span v-else>
+            {{ hotel.name }}
+        </span v-else>
+      </td>
+      <td>
+        <span v-if="showForm">
+              <input  v-model="updatedHotel.code">
+        </span>
+        <span v-else>
+            {{ hotel.code }}
+          </span v-else>
+     </td>
+      <td>
+        <span v-if="showForm">
+              <input  v-model="updatedHotel.phone">
+        </span>
+        <span v-else>
+            {{ hotel.phone }}
           </span v-else>
       </td>
       <td>
-          <span v-if="showForm">
-                <input  v-model="updatedHotel.code">
-          </span>
-          <span v-else>
-              {{ hotel.code }}
-            </span v-else>
-       </td>
+        <span v-if="showForm">
+              <input  v-model="updatedHotel.email">
+        </span>
+        <span v-else>
+            {{ hotel.email }}
+          </span v-else>
+      </td>
       <td> hotel.updateUser.username </td>
       <td>  {{ hotel.lastUpdated | shortMoment() }}
       </td>
@@ -51,7 +67,7 @@ export default {
         return {
           response: [],
           errors: [],
-          newHotel:{name:'',code:'',updateUser:{id:''}},
+          //newHotel:{name:'',code:'',updateUser:{id:''}, phone:'',email:''},
           showHotel:null,
           updatedHotel:{},
           serverURL: process.env.SERVER_URL,
@@ -177,11 +193,14 @@ export default {
            const newName = this.updatedHotel;
            console.log('new Name =  '+JSON.stringify(newName))
            //+newName.id
-           this.newHotel.id=newName.id
-           this.newHotel.code=newName.code
-           this.newHotel.name=newName.name
-           console.log('new newHotel =  '+JSON.stringify( this.newHotel))
-           return HotelService.putRootNoCatch('/update/'+newName.id, this.newHotel)
+           //this.newHotel.id=newName.id
+           //this.newHotel.code=newName.code
+           //this.newHotel.name=newName.name
+           //this.newHotel.phone=newName.phone
+           //this.newHotel.email=newName.email
+
+           console.log('new newHotel =  '+JSON.stringify( newName))
+           return HotelService.putRootNoCatch('/update/'+newName.id, newName)
              .then((res) => {
              if (res) {
                 console.log('RES: '+JSON.stringify(res));

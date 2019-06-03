@@ -46,7 +46,7 @@ public class HotelController {
     @Put("/update/{id}")
     public HttpResponse update(Long id,@Body @Valid HotelUpdateCommand command) {
         System.out.println(" In controller updateHotel");
-        int numberOfEntitiesUpdated = hotels.update(id, command.getName(),command.getCode());
+        int numberOfEntitiesUpdated = hotels.update(id, command.getName(),command.getCode(), command.getPhone(), command.getEmail());
 
         return HttpResponse
                 .noContent()
