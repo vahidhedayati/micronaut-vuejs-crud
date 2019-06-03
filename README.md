@@ -7,6 +7,24 @@ Sample to get h2 database working taken from [this guide](https://guides.microna
 Demo of this project on  [youtube: micronaut vuejs crud](https://www.youtube.com/watch?v=Lhg8p9zI8xA) 
 ----
 
+The discussions on the video around missing aspects of CRUD should all now be fixed -
+> The user object as shown below is now linked to the updateUserId which is a Long value of actual update userId
+ 
+when list is received by Gateway gatewayController uses flatMap and connects to userClient picks up User object based on that Id.
+Gateway has a modified HotelModel object which has User updateUser with getter and setter that is set by the flatMap function.
+User at front end then sees the list as well as which user that did the update. 
+  
+>Frontend validation 
+(hotels [add a hotel](https://github.com/vahidhedayati/micronaut-vuejs-crud/blob/master/frontend/src/components/hotel/HotelForm.vue#L9-L144) )
+ / backend validation (gateway  / [HotelSaveCommand](https://github.com/vahidhedayati/micronaut-vuejs-crud/blob/master/gateway/src/main/java/gateway/adaptors/models/implementation/HotelSaveCommand.java#L22-L28) )
+ 
+   
+![user object binds to instance list](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/binding-to-userObject-for-listing-using-flatMap-inGateWayController.png)
+
+![backend validation](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/backend-validation.png)
+
+
+
 
 Running app
 ----
