@@ -6,7 +6,7 @@
             <div class="input-group">
             Hotel name:
 
-              <input type="text" class="form-control" pattern="(?=.*[A-Za-z0-9]).{3,55}" placeholder="Enter a name..." title="Hotel name: 3 - 55 characters only " v-model="hotel.name" required>
+              <input type="text" class="form-control" pattern="(?=.*[A-Za-z0-9]).{3,55}" placeholder="Enter a name..." title="Hotel name: 3 - 55 characters only " v-model="hotel.name" >
             </div>
           </div>
 
@@ -14,7 +14,6 @@
             <div class="input-group">
             Hotel Code:
 
-              <custom-input pattern="(?=.*[A-Z]).{2,4}" model="hotel.name" title="Hotel code: Upper Case A-Z 2 to 4 characters only "></custom-input>
               <input type="text" class="form-control" pattern="(?=.*[A-Z]).{2,4}" placeholder="Enter a code..." title="Hotel code: Upper Case A-Z 2 to 4 characters only" v-model="hotel.code" required>
 
             </div>
@@ -49,17 +48,22 @@
 import HotelService from '@/services/HotelService'
 const validateEmail= email => {
   if (!email.length) {
-    return { valid: false, error: "This field is required" };
+    return { valid: false, error: "Email field is required" };
   }
   if (!email.match(/^\w+([.-]?\w+)_@\w+(_[_.-]?\w+)_(.\w{2,3})+$/)) {
     return { valid: false, error: "Please, enter a valid email." };
   }
   return { valid: true, error: null };
 };
-
+const validateName = name => {
+  if (!name.length) {
+    return { valid: false, error: "Name field is required" };
+  }
+  return { valid: true, error: null };
+};
 const validatePhone = phone => {
   if (!phone.length) {
-    return { valid: false, error: 'This field is required.' };
+    return { valid: false, error: 'Phone field is required.' };
   }
 
   if (!phone.match(/^[+][(]?[0-9]{1,3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,7}$/gm)) {
@@ -79,7 +83,8 @@ export default {
   },
   components: {
     'validateEmail': validateEmail,
-    'validatePhone': validatePhone
+    'validatePhone': validatePhone,
+    'validateName' : validateName
 
   },
   created: function () {
@@ -88,6 +93,12 @@ export default {
   },
    methods: {
      submitForm () {
+
+       const validName = validateName(this.hotel.name);
+       this.errors.push(validName.error);
+       if (this.valid) {
+         this.valid = validName.valid
+       }
 
        const validPhone = validatePhone(this.hotel.phone);
        this.errors.push(validPhone.error);
@@ -99,12 +110,16 @@ export default {
        this.errors.push(validEmail.error);
        if (this.valid) {
          this.valid = validEmail.valid
-       } else {
-         this.$emit('hotel-errors',this.errors);
        }
 
+
+       /**
+        * IF form is valid for submission submit it - otherwise fail front end validation:
+        */
        if (this.valid) {
         this.submit();
+       } else {
+         this.$emit('hotel-errors',this.errors);
        }
      },
     submit () {
