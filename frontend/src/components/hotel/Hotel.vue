@@ -10,7 +10,7 @@
 
     <!-- any errors caused by any underlying processes on this page -->
     <ul v-show="errors.length>0"  class="errors"><li v-for="error in errors">
-     actual_message: error -
+     actual_message: {{error}} -
              -- translated_code:  {{$t(error)}}
     </li></ul>
 
