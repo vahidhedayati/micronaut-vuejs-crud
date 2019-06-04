@@ -6,7 +6,7 @@
             <div class="input-group">
             Hotel name:
 
-              <input type="text" class="form-control" pattern="(?=.*[A-Za-z0-9]).{3,55}" placeholder="Enter a name..." title="Hotel name: 3 - 55 characters only " v-model="hotel.name" >
+              <input type="text" class="form-control"  pattern="(?=.*[A-Za-z0-9]).{3,55}" placeholder="Enter a name..." title="Hotel name: 3 - 55 characters only " v-model="hotel.name" >
             </div>
           </div>
 
@@ -14,14 +14,14 @@
             <div class="input-group">
             Hotel Code:
 
-              <input type="text" class="form-control" pattern="(?=.*[A-Z]).{2,4}" placeholder="Enter a code..." title="Hotel code: Upper Case A-Z 2 to 4 characters only" v-model="hotel.code" required>
+              <input type="text" class="form-control"  pattern="(?=.*[A-Z]).{2,4}" placeholder="Enter a code..." title="Hotel code: Upper Case A-Z 2 to 4 characters only" v-model="hotel.code" required>
 
             </div>
           </div>
 
        <div>
          <label>Phone:</label>
-         <input type="text" v-model="hotel.phone" />
+         <input type="text" v-model="hotel.phone" value />
        </div>
        <div>
          <label>Email:</label>
@@ -48,10 +48,10 @@
 import HotelService from '@/services/HotelService'
 const validateEmail= email => {
   if (!email.length) {
-    return { valid: false, error: "Email field is required" };
+    return { valid: false, error: "email_needed"};
   }
   if (!email.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)) {
-    return { valid: false, error: "Please, enter a valid email." };
+    return { valid: false, error: "email_invalid" };
   }
   return { valid: true, error: null };
 };
@@ -63,11 +63,11 @@ const validateName = name => {
 };
 const validatePhone = phone => {
   if (!phone.length) {
-    return { valid: false, error: 'Phone field is required.' };
+    return { valid: false, error: 'phone_required' };
   }
 
   if (!phone.match(/^[+][(]?[0-9]{1,3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,7}$/gm)) {
-    return { valid: false, error: 'Please, enter a valid international phone number.' };
+    return { valid: false, error: 'phone_invalid' };
   }
 
   return { valid: true, error: null };
@@ -78,7 +78,7 @@ export default {
     return {
       valid: true,
       errors: [],
-      hotel:{name:'',code:'',phone:'', email:'', updateUser:{id:''}}
+      hotel:{name:'AAAAAAAAAAAAA',code:'AAAA',phone:'+44-123456789', email:'aa@aa.com', updateUser:{id:''}}
     }
   },
   components: {
@@ -134,9 +134,11 @@ export default {
                 }
               }
             }).catch((error) => {
-              console.log(' aahh '+JSON.stringify(error))
-              if (error.response) {
-              this.$emit('hotel-errors', error.response.data);
+
+           this.$emit('hotel-errors',   error.response.data);
+
+           if (error.response) {
+              //this.$emit('hotel-errors', err.code);
 
             } else if ( error.request) {
               console.log("dddd"+error.request);

@@ -1,6 +1,16 @@
 {
     "translation": {
       "app_name": "מלון נהדר",
-      "tada": "Tada הודעה אחרת"
+      "tada": "Tada הודעה אחרת",
+      "hotel_label": "מלון",
+      "users_label": "משתמשים",
+      "field_three_char": "שדה חייב להיות לכל היותר 3 תווים",
+      "email_needed": "נדרש דוא",
+      "email_invalid": "Email is invalid",
+      "phone_required": "האימייל אינו חוקי",
+      "phone_invalid": "מספר הטלפון אינו פורמט חוקי נסה + 44-12345789",
+      "home": {
+        "label": "בית"
+      }
     }
 }

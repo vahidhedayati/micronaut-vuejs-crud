@@ -1,6 +1,16 @@
 {
     "translation": {
-        "app_name": "素晴らしいホテル検索",
-      "tada": "多田他のメッセージ"
+      "app_name": "素晴らしいホテル検索",
+      "tada": "多田他のメッセージ",
+      "hotel_label": "ホテル",
+      "users_label": "ユーザー",
+      "field_three_char": "フィールドは最大3文字でなければなりません",
+      "email_needed": "メールアドレスが必要です",
+      "email_invalid": "メールアドレスが無効です",
+      "phone_required": "電話番号が必要です",
+      "phone_invalid": "電話番号が無効な形式です+ 44-12345789",
+      "home": {
+        "label": "ホーム"
+      }
     }
 }

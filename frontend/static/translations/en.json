@@ -1,7 +1,17 @@
 {
     "translation": {
-        "app_name": "Fabulous Hotel finder",
-        "tada": "Tada some other message"
+      "app_name": "Fabulous Hotel finder",
+      "tada": "Tada some other message",
+      "hotel_label": "Hotel",
+      "users_label": "Users",
+      "field_three_char": "Field must be at most 3 characters",
+      "email_needed": "Email is required",
+      "email_invalid": "Email is invalid",
+      "phone_required": "Phone number required",
+      "phone_invalid": "Phone number is not valid format try +44-12345789",
+      "home": {
+        "label": "Home"
+      }
 
     }
 }

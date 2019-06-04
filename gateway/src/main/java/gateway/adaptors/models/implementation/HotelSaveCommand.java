@@ -20,7 +20,7 @@ public class HotelSaveCommand {
     //(?<![A-Z]{5})(?![A-Z])
 
     @NotBlank
-    @Pattern(regexp = "(?=.*[A-Z]).{2,3}", message = "Field must be at most 3 characters")
+    @Pattern(regexp = "(?=.*[A-Z]).{2,3}", message = "field_three_char")
     private String code;
 
     @NotNull

@@ -8,12 +8,12 @@ import { defaultLocale } from '../components/i18n/i18n'
 export default new Router({
   routes: [
     {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: Home
     },
     {
-      path: '/loc',
+      path: '/',
       redirect: `/${defaultLocale}`,
     },
     {
@@ -23,28 +23,22 @@ export default new Router({
       },
       children: [
         {
-          path: '',
+          path: 'home',
+          component: Home
+        },
+        {
+          path: 'hotel/:id',
           component: {
-            template: '<div>Home</div>',
+            template: '<div>hotelShow</div>',
           },
         },
         {
-          path: 'products/:id',
-          component: {
-            template: '<div>ProductShow</div>',
-          },
+          path: 'hotel',
+          component: Hotel
         },
         {
-          path: 'products',
-          component: {
-            template: '<div>ProductIndex</div>',
-          },
-        },
-        {
-          path: 'about',
-          component: {
-            template: '<div>About</div>',
-          },
+          path: 'users',
+          component: User
         },
       ],
     },

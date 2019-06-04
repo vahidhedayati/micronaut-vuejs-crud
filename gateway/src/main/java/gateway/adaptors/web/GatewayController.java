@@ -97,11 +97,12 @@ public class GatewayController {
             Set<String> violationMessages = new HashSet<String>();
 
             for (ConstraintViolation<?> constraintViolation : constraintViolations) {
-                violationMessages.add(constraintViolation.getPropertyPath() + ": " + constraintViolation.getMessage());
+                violationMessages.add(constraintViolation.getMessage());
+                //violationMessages.add(constraintViolation.getPropertyPath() + ": " + constraintViolation.getMessage());
             }
             //System.out.println(" 01 ---->"+violationMessages);
 //            throw new ValidationException("Hotel is not valid:\n" + violationMessages);
-            return HttpResponse.serverError(violationMessages);
+            return HttpResponse.badRequest(violationMessages);
         }
 
         //Hotel hotel = backendClient.save(args);

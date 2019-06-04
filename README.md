@@ -24,8 +24,9 @@ User at front end then sees the list as well as which user that did the update.
 ![backend validation](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/backend-validation.png)
 
 
-![Hotel name translated using static/translations/he.json](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/hotel-name-hebrew-translated-using-i18next-rtl-text.png)
+![Hotel name translated using static/translations/he.json](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/translations-backend-codes-translated.png)
 
+![Hotel name translated using static/translations/he.json](https://raw.githubusercontent.com/vahidhedayati/micronaut-vuejs-crud/master/docs/translations-frontend-error-codes-translated.png)
 
 
 

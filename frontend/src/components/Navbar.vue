@@ -10,9 +10,39 @@
     <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
       <ul class="nav">
         {{$t('app_name')}}
-        <li  class="dropdown"><router-link class="site-header" to="/">Home</router-link></li>
-        <li  class="dropdown"><router-link to="/hotel">Hotels</router-link></li>
-        <li  class="dropdown"><router-link to="/users">Users</router-link></li>
+        <localized-link
+          tag="li"
+          to="home"
+          class="nav-item"
+          active-class="active"
+        >
+          <a class="nav-link">
+            {{$t('home.label')}}
+          </a>
+        </localized-link>
+        <localized-link
+          tag="li"
+          to="hotel"
+          class="nav-item"
+          active-class="active"
+        >
+          <a class="nav-link">
+            {{$t('hotel_label')}}
+          </a>
+        </localized-link>
+
+        <localized-link
+          tag="li"
+          to="users"
+          class="nav-item"
+          active-class="active"
+        >
+          <a class="nav-link">
+            {{$t('users_label')}}
+          </a>
+        </localized-link>
+
+
 
         <locale-switcher />
 
@@ -51,16 +81,12 @@
 
 <script>
   import LocaleSwitcher from './LocaleSwitcher'
-
+  import LocalizedLink from './LocalizedLink'
   export default {
-    computed: {
-      currentLocale() {
-        return this.$route.params.locale
-      },
-    },
 
     components: {
       LocaleSwitcher,
+      LocalizedLink
     },
   }
 </script>
