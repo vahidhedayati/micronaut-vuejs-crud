@@ -1,10 +1,13 @@
 package gateway.adaptors.models.implementation;
 
+import io.micronaut.validation.Validated;
+
 import javax.annotation.Nullable;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
+@Validated
 public class SortingAndOrderArguments {
     @Nullable
     private String name;
@@ -32,9 +35,7 @@ public class SortingAndOrderArguments {
 
 
     public Integer getOffset() {
-        if(offset == null) {
-            return 0;
-        }
+
         return offset;
     }
     public void setOffset(@Nullable Integer offset) {
@@ -42,26 +43,25 @@ public class SortingAndOrderArguments {
     }
 
     public Integer getMax() {
-        if(max == null) {
-            return 10;
-        }
+
         return max;
     }
     public void setMax(@Nullable Integer max) {
+        if(max == null) {
+            max = 10;
+        }
         this.max = max;
     }
 
 
     public String getSort() {
-        if(sort == null) {
-            return "id";
-        }
+
         return sort;
     }
 
     public void setSort(@Nullable String sort) {
         if (sort==null) {
-            sort="asc";
+            sort="id";
         }
 
         this.sort = sort;
@@ -77,15 +77,12 @@ public class SortingAndOrderArguments {
     }
 
     public String getOrder() {
-        if(order == null) {
-            return "asc";
-        }
         return order;
     }
 
     public void setOrder(@Nullable String order) {
         if (order==null) {
-            order="id";
+            order="asc";
         }
         this.order = order;
     }

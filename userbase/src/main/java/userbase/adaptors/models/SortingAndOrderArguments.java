@@ -3,8 +3,6 @@ package userbase.adaptors.models;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import java.util.Optional;
 
 public class SortingAndOrderArguments {
@@ -13,15 +11,13 @@ public class SortingAndOrderArguments {
     private String name;
 
     @Nullable
-    @PositiveOrZero
     private Integer offset;
 
     @Nullable
-    @Positive
     private Integer max;
 
     @Nullable
-    @Pattern(regexp = "id|userame|firstname|surname|lastUpdated")
+    @Pattern(regexp = "id|name|code|lastUpdated|phone|email")
     private String sort;
 
     @Pattern(regexp = "asc|ASC|desc|DESC")
@@ -35,31 +31,21 @@ public class SortingAndOrderArguments {
 
     public Optional<Integer> getOffset() {
         if(offset == null) {
-            //return Optional.empty();
+           // return Optional.empty();
             return Optional.of(0);
         }
         return Optional.of(offset);
     }
 
-    public void setOffset(@Nullable String offset) {
 
-        if (offset ==null) {
-            this.offset=0;
-        } else {
-            this.offset = Integer.valueOf(offset);
-        }
-    }
     public void setOffset(@Nullable Optional<Integer>  offset) {
-        if (offset.get() ==null) {
-            this.offset=0;
-        } else {
+        //if (offset.get() ==null) {
+         //   this.offset=0;
+        //} else {
             this.offset = Integer.valueOf(offset.get());
-        }
+        //}
     }
 
-    public void setOffset(@Nullable Integer offset) {
-        this.offset = offset;
-    }
 
 
     public Optional<Integer> getMax() {
@@ -70,26 +56,37 @@ public class SortingAndOrderArguments {
     }
 
 
-    public void setMax(@Nullable String max) {
-        if (max==null) {
-            this.max=0;
-        } else {
-            this.max = Integer.valueOf(max);
-        }
-    }
+    /*
 
-    public void setMax(@Nullable Optional<Integer> max) {
+       public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+    public void setOffset(String offset) {
+
+        this.offset = Integer.valueOf(offset);
+
+    }
+    public void setMax(String max) {
+
+            this.max = Integer.valueOf(max);
+
+    }
+    public void setMax(@Nullable  Optional<Integer> max) {
+        System.out.println("Setting max");
         if (max.get() ==null) {
             this.max=0;
         } else {
-            this.max = Integer.valueOf(max.get());
+            this.max = max.get();
         }
     }
 
-
+    */
     public void setMax(@Nullable Integer max) {
         this.max = max;
     }
+
+
+
 
 
     public Optional<String> getName() {
