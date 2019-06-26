@@ -28,6 +28,17 @@
          <input type="text" v-model="hotel.email" />
        </div>
 
+<!-- please note hidden fields not needed but to represent what happens with autoComplete below -->
+         <input type="hidden" v-model="hotel.updateUser.username" />
+         <input type="hidden" v-model="hotel.updateUser.id" />
+
+
+         <autocomplete form-field="search"
+                       @key-press="updateAutoCompleteItems"
+                       @search-value="updateSearchValue"
+                       @search-key="updateSearchKey"
+                       key-field="id" value-field="username"
+                       :items="users" />
 
         <!-- if the user is logged in this is value is preset by their ID after the page has been loaded -->
         <input type="hidden"  v-model="hotel.updateUser.id">
@@ -45,7 +56,9 @@
 </template>
 
 <script>
+import $ from 'jquery';
 import HotelService from '@/services/HotelService'
+import Autocomplete from '../Autocomplete'
 const validateEmail= email => {
   if (!email.length) {
     return { valid: false, error: "email_needed"};
@@ -77,14 +90,16 @@ export default {
   data: function () {
     return {
       valid: true,
+        users: [],
       errors: [],
-      hotel:{name:'AAAAAAAAAAAAA',code:'AAAA',phone:'+44-123456789', email:'aa@aa.com', updateUser:{id:''}}
+      hotel:{name:'AAAAAAAAAAAAA',code:'AAAA',phone:'+44-123456789', email:'aa@aa.com', updateUser:{id:'', username:''}}
     }
   },
   components: {
     'validateEmail': validateEmail,
     'validatePhone': validatePhone,
-    'validateName' : validateName
+    'validateName' : validateName,
+     'autocomplete' : Autocomplete
 
   },
   created: function () {
@@ -92,6 +107,34 @@ export default {
     //this.hotel.updateUser.id=this.authRecord.id;
   },
    methods: {
+   updateAutoCompleteItems: function (searchValue) {
+      if (searchValue.length>2) {
+        this.users=[];
+        var variables = $.param(searchValue);
+        variables+="&max=10&offset=0";
+        this.initialiseUsers(variables);
+      }
+    },
+    initialiseUsers(params){
+      return HotelService.fetchRoot('/user/list?'+params)
+        .then((res) => {
+        if (res) {
+          if (res.data.instanceList) {
+           this.users = res.data.instanceList;
+          } else {
+            if (res.data) {
+              this.users = res.data;
+            }
+          }
+        }
+      });
+    },
+     updateSearchValue: function (value) {
+       this.hotel.updateUser.username=value
+     },
+     updateSearchKey: function (key) {
+       this.hotel.updateUser.id=key
+     },
      submitForm () {
        this.errors=[];
        const validName = validateName(this.hotel.name);
