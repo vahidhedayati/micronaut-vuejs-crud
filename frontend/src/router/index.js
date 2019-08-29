@@ -17,12 +17,7 @@ const router = new Router({
       component: Logout ,
       meta: { requiresAuth:false}
     },
-    {
-      path: 'login',
-      name: 'Login',
-      component: Login,
-      meta: { requiresAuth:false}
-    },
+
     {
       path: '/',
       redirect: `/${defaultLocale}`,
@@ -71,18 +66,6 @@ const router = new Router({
           meta: { requiresAuth: true , roles:['ROLE_ADMIN', 'ROLE_USERS']}
         },
       ],
-    },
-    {
-      path: '/hotel',
-      name: 'hotel',
-      component: Hotel,
-      meta: { requiresAuth: true , roles:['ROLE_ADMIN', 'ROLE_USERS']}
-    },
-    {
-      path: '/users',
-      name: 'users',
-      component: User,
-      meta: { requiresAuth: true , roles:['ROLE_ADMIN', 'ROLE_USERS']}
     },
     {
       path: '*',
