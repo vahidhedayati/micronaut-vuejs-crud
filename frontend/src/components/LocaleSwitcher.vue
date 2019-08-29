@@ -1,5 +1,5 @@
 <template>
-  <li class="nav-item dropdown">
+  <div class="nav-lift dropdown">
     <a
       href="#"
       role="button"
@@ -7,30 +7,24 @@
       aria-haspopup="true"
       aria-expanded="false"
       data-toggle="dropdown"
-      class="nav-link dropdown-toggle"
-    >
+      class="nav-link dropdown-toggle">
       <img
         :src="icons[currentLocale]"
-        class="country-icon as-toggle"
-      />
+        class="country-icon as-toggle"/>
     </a>
-
     <div
       aria-labelledby="navbarDropdown"
-      class="dropdown-menu dropdown-menu-right"
-    >
+      class="dropdown-menu ">
       <router-link
         v-for="locale in locales"
         :key="locale.code"
         :to="`/${locale.code}`"
-        class="dropdown-item"
-      >
+        class="dropdown-item">
         <img :src="icons[locale.code]" class="country-icon" />
-
         <span class="locale-name">{{locale.name}}</span>
       </router-link>
     </div>
-  </li>
+  </div>
 </template>
 
 <script>
@@ -62,7 +56,7 @@
 
 <style scoped>
   .country-icon {
-    width: 20px;
+    width: 40px;
     height: auto;
     display: inline-block;
     vertical-align: baseline;

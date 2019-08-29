@@ -21,6 +21,7 @@
 
     methods: {
       set(locale) {
+        locale = (locale ? locale : 'en')
         this.uiTranslationsLoaded = false
 
         setUiLocale(locale)
@@ -42,7 +43,6 @@
               },
             )
           })
-          /* eslint-disable no-console */
           .catch(err => console.error(err))
       },
     },

@@ -14,6 +14,7 @@ import './assets/css/grails.css'
 import './assets/css/main.css'
 //import VueAuthenticate from 'vue-authenticate'
 import {Tabs, Tab} from 'vue-tabs-component';
+import VueAuthenticate from 'vue-authenticate'
 import VueDropdown from 'vue-dynamic-dropdown'
 //import { currency } from './currency'
 //import VuejsDialog from "vuejs-dialog"
@@ -43,7 +44,6 @@ Vue.component('tabs', Tabs);
 Vue.component('tab', Tab);
 //Vue.use(require('vue-moment'));
 
-/*
 // Vue Auth
 Vue.use(VueAuthenticate, {
   baseUrl: 'http://localhost:8080/',
@@ -62,12 +62,13 @@ Vue.use(VueAuthenticate, {
   bindResponseInterceptor () {
     this.$http.interceptors.response.use((response) => {
       console.log(response)
-    this.setToken(response)
-    return response
-  })
+      this.setToken(response)
+      return response
+    })
   }
 });
-*/
+
+
 Vue.config.productionTip = false;
 
 //Global mixin

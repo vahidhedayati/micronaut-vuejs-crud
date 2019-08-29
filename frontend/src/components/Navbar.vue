@@ -42,8 +42,12 @@
           </a>
         </localized-link>
 
-
-
+        <router-link  role="button" v-show="loggedIn" :to="{name: 'logout'}">
+          <a  class="logout-options" role="button" > Sign out</a>
+        </router-link>
+        <localized-link  tag="li"   v-show="!loggedIn" to="login" class="dropdown" active-class="active">
+          <a  class="logout-options" role="button" > Sign in</a>
+        </localized-link>
         <locale-switcher />
 
       </ul>
@@ -83,7 +87,7 @@
   import LocaleSwitcher from './LocaleSwitcher'
   import LocalizedLink from './LocalizedLink'
   export default {
-
+      props: ['loggedIn'],
     components: {
       LocaleSwitcher,
       LocalizedLink

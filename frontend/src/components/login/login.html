@@ -1,0 +1,42 @@
+<v-container fill-height>
+  <v-layout row wrap align-center>
+    <v-flex xs12 sm8 offset-sm2 align-center justify-center>
+      <v-card class="elevation-12">
+        <v-toolbar dark color="primary">
+          <v-toolbar-title>Sign In</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text>
+          <v-container>
+            <form  @submit.prevent="processForm">
+              <div class="ui stacked segment">
+                <div class="field">
+                  <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="username" placeholder="username"  v-model="username">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password" placeholder="Password" v-model="password">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui left icon input">
+                    <label><input v-model="data.rememberMe" type="checkbox" /> Remember Me</label>
+                  </div>
+                </div>
+                <button type="submit" class="button is-danger">Login</button>
+
+              </div>
+
+              <div class="ui error message"></div>
+
+            </form>
+
+          </v-container>
+        </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</v-container>

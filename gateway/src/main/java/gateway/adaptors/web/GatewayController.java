@@ -11,6 +11,8 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.annotation.Error;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 import io.reactivex.Single;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +26,7 @@ import java.util.Set;
 
 @Slf4j
 @Controller("/")
+@Secured(SecurityRule.IS_AUTHENTICATED)
 public class GatewayController {
    // @Inject
    // Validator validator;
@@ -35,6 +38,7 @@ public class GatewayController {
     }
 
     @Get(uri="/list{?args*}" , consumes = MediaType.APPLICATION_JSON)
+    @Secured({"ROLE_ADMIN", "ROLE_X"})
     public Optional<HotelModel> findAll(SortingAndOrderArguments args) {
         //System.out.println("Trying to find"+args.getValues());
         Optional<HotelModel> hotelModel =  backendClient.findAll(args);
@@ -60,16 +64,19 @@ public class GatewayController {
     }
 
     @Get("/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_X"})
     public Optional<Hotel> findById(@NotNull Long id) {
         return backendClient.findById(id);
     }
 
     @Delete("/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_X"})
     public HttpResponse delete(Long id) {
         return backendClient.delete(id);
     }
 
     @Put(uri = "/update/{id}", consumes = MediaType.APPLICATION_JSON)
+    @Secured({"ROLE_ADMIN", "ROLE_X"})
     public HttpResponse update(Long id, @Body HotelUpdateCommand args) {
         return backendClient.update(id,args);
     }
@@ -82,7 +89,7 @@ public class GatewayController {
      * //@Error(exception = ConstraintViolationException.class)
      */
     @Post(uri = "/", consumes = MediaType.APPLICATION_JSON)
-
+    @Secured({"ROLE_ADMIN", "ROLE_X"})
     public HttpResponse save(@Body @Valid HotelSaveCommand args)  {
 
         /**

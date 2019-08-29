@@ -5,7 +5,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import createPersistedState from 'vuex-persistedstate'
 import vehicles from './modules/vehicles';
-
+import auth from './auth'
+import user from './user'
 import en from '../locales/en';
 import de from '../locales/de'
 Vue.use(Vuex)
@@ -14,7 +15,9 @@ Vue.use(VueAxios, axios)
 const store = new Vuex.Store({
   plugins: [createPersistedState()],
   modules: {
-    vehicles
+    vehicles,
+    auth,
+    user
   }
 })
 

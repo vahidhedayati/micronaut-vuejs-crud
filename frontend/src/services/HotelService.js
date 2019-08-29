@@ -1,11 +1,11 @@
-
+import Api from '@/services/Api'
 import axios from 'axios'
 const instance = axios.create({
   baseURL: `http://localhost:8080/`
 })
 export default {
   fetchParams (component,params) {
-    return instance.get(component, {params:params })
+    return Api().get(component, {params:params })
       .catch((error) => {
       if (error.response) {
       console.log(error.response);
@@ -18,7 +18,7 @@ export default {
   },
 
   fetchBlob (component) {
-    return instance.get(component,{responseType: 'blob', headers: { 'Accept': 'application/vnd.ms-excel' }})
+    return Api().get(component,{responseType: 'blob', headers: { 'Accept': 'application/vnd.ms-excel' }})
       .catch((error) => {
       if (error.response) {
       console.log(error.response);
@@ -30,19 +30,19 @@ export default {
   });
   },
   fetchName (component) {
-    return instance.get(component)
-    .catch((error) => {
-        if (error.response) {
-            console.log(error.response);
-        } else if (error.request) {
-            console.log(error.request);
-        } else {
-            console.log('Error', error.message);
-        }
-    });
+    return Api().get(component)
+      .catch((error) => {
+      if (error.response) {
+      console.log(error.response);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log('Error', error.message);
+    }
+  });
   },
   fetchRoot (component) {
-    return instance.get(component)
+    return  Api().get(component)
       .catch((error) => {
       if (error.response) {
       console.log(error.response);
@@ -54,59 +54,59 @@ export default {
   });
   },
   createName (component, params) {
-    return instance.post(component, params)
-    .catch((error) => {
-        if (error.response) {
-            console.log(error.response);
-        } else if (error.request) {
-            console.log(error.request);
-        } else {
-            console.log('Error', error.message);
-        }
-    });
+    return Api().post(component, params)
+      .catch((error) => {
+      if (error.response) {
+      console.log(error.response);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log('Error', error.message);
+    }
+  });
   },
   createNoCatch (component, params) {
-    return instance.post(component, params)
+    return Api().post(component, params)
 
   },
   createRootNoCatch (component, params) {
-    return instance.post(component, params)
+    return  Api().post(component, params)
 
   },
   putRootNoCatch (component, params) {
-    return instance.put(component, params)
+    return  Api().put(component, params)
 
   },
   patchRootNoCatch (component, params) {
-    return instance.patch(component, params)
+    return Api().patch(component, params)
 
   },
   update(component,params) {
 
-    return instance.patch(component, params)
-    .catch((error) => {
-        if (error.response) {
-            console.log(error.response);
-        } else if (error.request) {
-            console.log(error.request);
-        } else {
-            console.log('Error', error.message);
-        }
-    });
+    return Api().patch(component, params)
+      .catch((error) => {
+      if (error.response) {
+      console.log(error.response);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log('Error', error.message);
+    }
+  });
   },
   deleteNoCatch (component, id) {
     return instance.delete(component+'/' + id)
   },
   delete (component,id) {
-    return instance.delete(component+'/' + id)
-    .catch((error) => {
-        if (error.response) {
-            console.log(error.response);
-        } else if (error.request) {
-            console.log(error.request);
-        } else {
-            console.log('Error', error.message);
-        }
-    });
+    return Api().delete(component+'/' + id)
+      .catch((error) => {
+      if (error.response) {
+      console.log(error.response);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log('Error', error.message);
+    }
+  });
   }
 }
