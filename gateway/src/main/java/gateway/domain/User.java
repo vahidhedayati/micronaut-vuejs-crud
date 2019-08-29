@@ -34,11 +34,14 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+    /*
     @Column(name = "accessToken")
     String accessToken;
     @Column(name = "refreshToken")
     String refreshToken;
 
+
+     */
     public String getPassword() {
         return password;
     }
@@ -98,21 +101,7 @@ public class User {
         this.roles = roles;
     }
 
-    public String getAccessToken() {
-        return accessToken;
-    }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
 
     public User(String username, String password, String firstname, String surname, Date lastUpdated) {
         this.username = username;

@@ -27,11 +27,15 @@ import java.util.Optional;
 public class FabAuthenticationProvider implements AuthenticationProvider {
     @Inject
     private UsersImpl userImpl;
+
+    /*
     protected final AccessRefreshTokenGenerator accessRefreshTokenGenerator;
     @Inject
     public FabAuthenticationProvider(AccessRefreshTokenGenerator accessRefreshTokenGenerator) {
         this.accessRefreshTokenGenerator = accessRefreshTokenGenerator;
     }
+     */
+
     @Override
     public Publisher<AuthenticationResponse> authenticate(AuthenticationRequest authenticationRequest) {
         System.out.println("authentication "+authenticationRequest.getIdentity().toString()+" --- "+authenticationRequest.getSecret());
@@ -41,10 +45,11 @@ public class FabAuthenticationProvider implements AuthenticationProvider {
         if (authenticationRequest.getSecret() == null) {
             return Flowable.just(new AuthenticationFailed());
         }
-        User user = userImpl.findByUsernameAndPassword(authenticationRequest.getIdentity().toString(),authenticationRequest.getSecret().toString()).get();
-        if (user!=null) {
-            Collection<String> roles = userImpl.getStringRoles(user);
-            UserDetails userDetails = new UserDetails(user.getUsername(),roles);
+        Optional<User> user = userImpl.findByUsernameAndPassword(authenticationRequest.getIdentity().toString(),authenticationRequest.getSecret().toString());
+        if (user.isPresent()) {
+            User u  = user.get();
+            Collection<String> roles = userImpl.getStringRoles(u);
+            UserDetails userDetails = new UserDetails(u.getUsername(),roles);
             /*
             Optional<AccessRefreshToken> accessRefreshToken = accessRefreshTokenGenerator.generate(userDetails);
             System.out.println("1 -- "+accessRefreshToken.isPresent()+"---- "+user.getUsername()+" R"+roles+" _ "+userDetails.getMessage()+" "+userDetails.toString());

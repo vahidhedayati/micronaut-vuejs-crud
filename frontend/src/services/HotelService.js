@@ -95,7 +95,7 @@ export default {
   });
   },
   deleteNoCatch (component, id) {
-    return instance.delete(component+'/' + id)
+    return  Api().delete(component+'/' + id)
   },
   delete (component,id) {
     return Api().delete(component+'/' + id)

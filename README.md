@@ -1,11 +1,30 @@
-Micronaut backend vuejs frontend application
+Micronaut backend vuejs frontend application - with security
 ---
+
+```
+	users.add(addUser("admin","password", "Alan", "Wollenstein"));
+		users.add(addUser("susan","password", "Susan", "Jones"));
+		users.add(addUser("bill","password", "Billy", "Smith"));
+		users.add(addUser("ben","password", "Benjamin", "Thomas"));
+
+```
+
+Above usenames and passwords can login and they all get `ROLE_ADMIN`, 
+refer to 2nd video and `DataLoader.java` in `Gateway` application
+
+### Same project with no security:
+git clone https://github.com/vahidhedayati/micronaut-vuejs-crud -b default 
+
+
 
 
 Sample to get h2 database working taken from [this guide](https://guides.micronaut.io/micronaut-data-access-jpa-hibernate/guide/index.html)
 
-Demo of this project on  [youtube: micronaut vuejs crud](https://www.youtube.com/watch?v=Lhg8p9zI8xA) 
-----
+Demo of this project on Youtube
+-----------
+###### [Micronaut vuejs crud Part 1 ](https://www.youtube.com/watch?v=Lhg8p9zI8xA)
+###### [Micronaut vuejs crud authentication Part 2](https://www.youtube.com/watch?v=bD4sDz1PuEQ)
+
 
 The discussions on the video around missing aspects of CRUD should all now be fixed -
 > The user object as shown below is now linked to the updateUserId which is a Long value of actual update userId
@@ -61,6 +80,16 @@ kill -9 $(netstat -pln 2>/dev/null |grep LISTEN|grep node|awk '{print $7}'|awk -
 The above will launch 1 instance of frontend vuejs site running on `localhost:3000` 
 and a backend micronaut site running on port `localhost:{random}` a gateway micronaut app running on port 
 `localhost:8080` 
+
+
+###Security test 
+```
+curl -X "POST" "http://localhost:8080/login" -H 'Content-Type: application/json; charset=utf-8' -d '{ "username": "admin", "password": "password" }'
+```
+You should see something like this
+```
+{"username":"admin","roles":["ROLE_ADMIN"],"access_token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsIm5iZiI6MTU2NzA4OTQxNywicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJnYXRld2F5IiwiZXhwIjoxNTY3MDkzMDE3LCJpYXQiOjE1NjcwODk0MTd9.JxtuOp7KycOO_pERoBf3DTm-qS6VBzl36THtLs89ig4","refresh_token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsIm5iZiI6MTU2NzA4OTQxNywicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJnYXRld2F5IiwiaWF0IjoxNTY3MDg5NDE3fQ.fYW-rEx8el7_C52oL35SxkcKVEAh5Tl5GikHHdImdO4","token_type":"Bearer","expires_in":3600}
+```
 
 
 ##### frontend changed to resemble a grails vuejs site: will start up on port 3000
