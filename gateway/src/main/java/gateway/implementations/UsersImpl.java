@@ -1,12 +1,12 @@
 package gateway.implementations;
 
 
+import gateway.DemoPasswordEncoder;
 import gateway.domain.Role;
 import gateway.domain.User;
 import gateway.interfaces.Users;
 import io.micronaut.configuration.hibernate.jpa.scope.CurrentSession;
 import io.micronaut.spring.tx.annotation.Transactional;
-import org.hibernate.Hibernate;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -23,11 +23,13 @@ public class UsersImpl implements Users {
     private EntityManager entityManager;
     private final MyApplicationConfiguration myApplicationConfiguration;
 
+    private final DemoPasswordEncoder passwordEncoder;
 
     public UsersImpl(@CurrentSession EntityManager entityManager,
-                     MyApplicationConfiguration myApplicationConfiguration) {
+                     MyApplicationConfiguration myApplicationConfiguration,DemoPasswordEncoder passwordEncoder) {
         this.entityManager = entityManager;
         this.myApplicationConfiguration = myApplicationConfiguration;
+        this.passwordEncoder=passwordEncoder;
     }
 
     private final static List<String> VALID_PROPERTY_NAMES = Arrays.asList("id", "username", "firstname", "surname");
@@ -146,7 +148,7 @@ public class UsersImpl implements Users {
     @Transactional
     @Override
     public User save(@NotBlank String username, @NotBlank String password, @NotBlank String firstname, @NotBlank String surname) {
-        User user = new User(username,password,firstname,surname);
+        User user = new User(username,passwordEncoder.encode(password),firstname,surname);
         entityManager.persist(user);
         return user;
     }

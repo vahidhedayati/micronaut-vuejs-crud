@@ -15,12 +15,16 @@ public class DataLoader  implements ApplicationEventListener<ServerStartupEvent>
 
 	@Inject
 	private UsersImpl userImpl;
-	 
+
+	private DemoUsersFactory demoUsersFactory;
+	public DataLoader(DemoUsersFactory demoUsersFactory) {
+		this.demoUsersFactory=demoUsersFactory;
+	}
 	@Transactional
 	@Override
 	public void onApplicationEvent(ServerStartupEvent event) {
 		if (!userImpl.findByUsername("admin").isPresent()) {
-			userImpl.add(DemoUsersFactory.defaultUsers(), "ROLE_ADMIN");
+			userImpl.add(demoUsersFactory.defaultUsers(), "ROLE_ADMIN");
         }
 	}
 }
