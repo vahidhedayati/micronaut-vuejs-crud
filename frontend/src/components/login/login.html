@@ -6,6 +6,11 @@
           <v-toolbar-title>Sign In</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
+          <ul v-show="error.length>0"  class="errors">
+            <li class="error">
+              {{$t(error)}}
+            </li>
+          </ul>
           <v-container>
             <form  @submit.prevent="processForm">
               <div class="ui stacked segment">
@@ -29,11 +34,7 @@
                 <button type="submit" class="button is-danger">Login</button>
 
               </div>
-
-              <div class="ui error message"></div>
-
             </form>
-
           </v-container>
         </v-card-text>
       </v-card>

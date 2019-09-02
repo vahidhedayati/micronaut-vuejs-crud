@@ -27,7 +27,7 @@ export default {
       })
         .then((response) => {
           console.log(' 0000 '+JSON.stringify(response))
-        if (response.data) {
+        if (response && response.data) {
         console.log('Login >>>>>>>>', response.data)//.access_token);
         //localStorage.setItem('id_token',  response.access_token)
         this.$store.dispatch('auth/login',  response.data);
@@ -43,6 +43,10 @@ export default {
         } else {
           this.$router.push({name:'home'})
         }
+      }  else {
+        this.error = 'auth_failed'
+        this.password=''
+
       }
     })
     },
