@@ -7,6 +7,8 @@ import gateway.adaptors.models.HotelModel;
 import gateway.adaptors.models.implementation.HotelSaveCommand;
 import gateway.adaptors.models.implementation.HotelUpdateCommand;
 import gateway.adaptors.models.implementation.SortingAndOrderArguments;
+import gateway.domain.Role;
+import gateway.domain.User;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
@@ -15,11 +17,17 @@ import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
 import io.reactivex.Single;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.tool.schema.TargetType;
 
 import javax.inject.Inject;
 import javax.validation.*;
 import javax.validation.constraints.NotNull;
+import java.io.File;
 import java.net.URI;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -36,6 +44,25 @@ public class GatewayController {
         this.userClient=userClient;
         this.backendClient = backendClient;
     }
+
+    /*
+    @Get(uri="/extract" , consumes = MediaType.APPLICATION_JSON)
+    @Secured({"ROLE_ADMIN", "ROLE_X"})
+    public  void extraDb() {
+        String file = "tmp.sql";
+        new File(file).delete();
+
+        MetadataSources metadata = new MetadataSources(new StandardServiceRegistryBuilder()
+                .applySetting("hibernate.dialect", "org.hibernate.dialect.H2Dialect").build());
+        metadata.addAnnotatedClass(User.class);
+        metadata.addAnnotatedClass(Role.class);
+        SchemaExport export = new SchemaExport();
+        export.setOutputFile(file);
+        export.setDelimiter(";");
+        export.setFormat(true);
+        export.execute(EnumSet.of(TargetType.SCRIPT), SchemaExport.Action.CREATE, metadata.buildMetadata());
+    }
+*/
 
     @Get(uri="/list{?args*}" , consumes = MediaType.APPLICATION_JSON)
     @Secured({"ROLE_ADMIN", "ROLE_X"})

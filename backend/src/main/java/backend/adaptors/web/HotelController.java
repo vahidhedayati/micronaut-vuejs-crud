@@ -2,6 +2,8 @@ package backend.adaptors.web;
 
 import backend.adaptors.models.HotelModel;
 import backend.domain.Hotel;
+import backend.domain.HotelRooms;
+import backend.domain.User;
 import backend.domain.interfaces.Hotels;
 import backend.implementation.HotelSaveCommand;
 import backend.implementation.HotelUpdateCommand;
@@ -12,9 +14,15 @@ import io.micronaut.http.annotation.*;
 import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 import io.reactivex.annotations.Nullable;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.tool.schema.TargetType;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.net.URI;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +36,24 @@ public class HotelController {
         this.hotels = hotels;
     }
 
+    @Get("/extractDb")
+    public  String extraDb() {
+        String file = "tmp.sql";
+        new File(file).delete();
+
+        MetadataSources metadata = new MetadataSources(new StandardServiceRegistryBuilder()
+                .applySetting("hibernate.dialect", "org.hibernate.dialect.H2Dialect").build());
+        metadata.addAnnotatedClass(Hotel.class);
+        metadata.addAnnotatedClass(HotelRooms.class);
+        metadata.addAnnotatedClass(User.class);
+        SchemaExport export = new SchemaExport();
+        export.setOutputFile(file);
+        export.setDelimiter(";");
+        export.setFormat(true);
+        System.out.println("About to run export to fo;e"+file+""  );
+        export.execute(EnumSet.of(TargetType.SCRIPT), SchemaExport.Action.CREATE, metadata.buildMetadata());
+        return "all done";
+    }
 
     @Get("/status")
     public HttpResponse status() {
