@@ -8,6 +8,13 @@ import backend.domain.interfaces.Hotels;
 import backend.implementation.HotelSaveCommand;
 import backend.implementation.HotelUpdateCommand;
 import backend.implementation.SortingAndOrderArguments;
+import io.micronaut.configuration.hibernate.jpa.JpaConfiguration;
+import io.micronaut.configuration.hibernate.jpa.condition.EntitiesInPackageCondition;
+import io.micronaut.context.ApplicationContext;
+import io.micronaut.context.env.Environment;
+import io.micronaut.core.io.scan.ClassPathAnnotationScanner;
+import io.micronaut.core.util.ArrayUtils;
+import io.micronaut.core.util.StringUtils;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
@@ -19,12 +26,16 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
 
+import javax.inject.Inject;
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import java.io.File;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Validated
 @Controller("/")
@@ -35,6 +46,8 @@ public class HotelController {
     public HotelController(Hotels hotels) {
         this.hotels = hotels;
     }
+    @Inject
+    protected Environment environment;
 
     @Get("/extractDb")
     public  String extraDb() {
@@ -43,9 +56,22 @@ public class HotelController {
 
         MetadataSources metadata = new MetadataSources(new StandardServiceRegistryBuilder()
                 .applySetting("hibernate.dialect", "org.hibernate.dialect.H2Dialect").build());
-        metadata.addAnnotatedClass(Hotel.class);
-        metadata.addAnnotatedClass(HotelRooms.class);
-        metadata.addAnnotatedClass(User.class);
+
+
+        final String[] packagesToScan =  new String[1];
+        packagesToScan[0] = "backend.domain";
+        Stream<Class> classStream=  environment.scan(Entity.class, packagesToScan);
+        classStream.forEach(s-> {
+            try {
+                metadata.addAnnotatedClass(Class.forName(s.getName()));
+                System.out.println(Class.forName(s.getName()));
+            }catch (ClassNotFoundException e) {}
+        });
+
+       // metadata.addAnnotatedClass(Hotel.class);
+       // metadata.addAnnotatedClass(HotelRooms.class);
+       // metadata.addAnnotatedClass(User.class);
+
         SchemaExport export = new SchemaExport();
         export.setOutputFile(file);
         export.setDelimiter(";");
