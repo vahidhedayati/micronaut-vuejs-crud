@@ -3,9 +3,9 @@ Micronaut backend vuejs frontend application - with security
 
 
 ### Side note - similar / related projects
-- [micronaut-vuejs-cqrs (this)](https://github.com/vahidhedayati/micronaut-vuejs-cqrs)
+- [micronaut-vuejs-cqrs](https://github.com/vahidhedayati/micronaut-vuejs-cqrs)
 
-- [micronaut-vuejs-crud](https://github.com/vahidhedayati/micronaut-vuejs-crud)
+- [micronaut-vuejs-crud (this)](https://github.com/vahidhedayati/micronaut-vuejs-crud)
 
 - [grails-vue-springsecurity-demo](https://github.com/vahidhedayati/grails-vue-springsecurity-demo)
 
