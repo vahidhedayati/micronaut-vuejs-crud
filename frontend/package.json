@@ -23,7 +23,7 @@
     "bootstrap-vue": "latest",
     "promise-polyfill": "^6.0.2",
     "tether": "latest",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "vuex": "^3.0.1",
     "vuetify": "^1.2.5",
     "vuex-i18n": "^1.10.5",
