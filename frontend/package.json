@@ -29,7 +29,7 @@
     "vuex-i18n": "^1.10.5",
     "vuex-persistedstate": "^2.4.2",
     "vuejs-datepicker": "^1.5.3",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "vue-moment": "^4.0.0",
     "vue-tabs-component": "^1.5.0",
     "vue-dynamic-dropdown": "^1.0.9",
